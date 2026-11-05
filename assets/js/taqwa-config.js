@@ -21,12 +21,12 @@ window.TAQWA_CONFIG = {
     },
 
     // رقم واتساب — بدون + أو 00 (مثال: 9639XXXXXXXX)
-    whatsappNumber: "963956351837",
+    whatsappNumber: "963983834795",
 
     // اسم المتجر
     storeName: "متجر الكردي للزينة",
-    storeAddress: "الدانا طريق دير حسان بعد مفرق 22",
-    storeSocial: { tiktok: "https://www.tiktok.com/@altaqwaa_7?_r=1&_t=ZG-9An8oWxO6u8", facebook: "https://www.facebook.com/share/1JH1j35Rk4/?mibextid=wwXIfr", instagram: "https://www.instagram.com/altaqwaa_7?cplk=Y3p5NDc5ODlqMncw" }
+    storeAddress: "موقع المتجر على الخريطة",
+    storeSocial: { tiktok: "https://www.tiktok.com/@alkrde...10?_r=1&_t=ZS-9B6WKKmnwwQ", facebook: "https://www.facebook.com/share/1EtGQGCXWq/?mibextid=wwXIfr", instagram: "https://www.instagram.com/lkrdyllzyn?obrf=MTh1ajIxeHNkbGh1Mw==", maps: "https://maps.app.goo.gl/a8JsD3deJWawshPd7" }
 };
 
 // Helper: هل تم إعداد Firebase؟

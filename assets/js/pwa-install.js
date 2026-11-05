@@ -113,10 +113,21 @@
     if (deferred) {
       const ev = deferred; deferred = null; window.__kdBip = null;
       try {
-        ev.prompt();
+        if (typeof ev.prompt !== 'function') throw new Error('Install prompt unavailable');
+        // prompt() must be called directly from the user's click gesture.
+        const promptResult = ev.prompt();
+        if (promptResult && typeof promptResult.then === 'function') await promptResult;
         const choice = await ev.userChoice;
-        if (choice && choice.outcome === 'accepted') setVisible(false);
-      } catch (e) { guide(); }
+        if (choice && choice.outcome === 'accepted') {
+          setVisible(false);
+          toast('جاري تثبيت متجر الكردي للزينة…');
+        } else {
+          toast('لم يتم تثبيت التطبيق. يمكنك المحاولة مرة أخرى.');
+        }
+      } catch (e) {
+        console.warn('[Kurdi PWA] Install prompt failed:', e);
+        guide();
+      }
       return;
     }
     guide();

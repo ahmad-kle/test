@@ -1,7 +1,7 @@
 /* متجر الكردي للزينة — Service Worker
    - يتجاهل لوحة الإدارة وكل الطلبات الخارجية (Firebase/Cloudinary/CDN) فلا يتدخل في منطق المتجر.
    - الصفحات والملفات: الشبكة أولاً مع بديل من الذاكرة، وصفحة offline.html عند انقطاع الاتصال. */
-const VERSION = 'alkurdi-v1.1.0';
+const VERSION = 'alkurdi-v1.1.1';
 const SHELL = VERSION + '-shell';
 const IMAGES = VERSION + '-img';
 const PRECACHE = [
