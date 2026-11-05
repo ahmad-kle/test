@@ -1,7 +1,7 @@
 /* متجر الكردي للزينة — Service Worker
    - يتجاهل لوحة الإدارة وكل الطلبات الخارجية (Firebase/Cloudinary/CDN) فلا يتدخل في منطق المتجر.
    - الصفحات والملفات: الشبكة أولاً مع بديل من الذاكرة، وصفحة offline.html عند انقطاع الاتصال. */
-const VERSION = 'alkurdi-v1.2.0';
+const VERSION = 'alkurdi-v1.5.0';
 const SHELL = VERSION + '-shell';
 const IMAGES = VERSION + '-img';
 const PRECACHE = [
@@ -52,7 +52,7 @@ self.addEventListener('fetch', event => {
 
   if (req.mode === 'navigate') {
     event.respondWith(
-      networkFirst(req, SHELL, 4500).then(res =>
+      networkFirst(req, SHELL, 1200).then(res =>
         (res && res.type !== 'error') ? res : caches.match('./offline.html'))
     );
     return;
@@ -64,5 +64,5 @@ self.addEventListener('fetch', event => {
     })));
     return;
   }
-  event.respondWith(networkFirst(req, SHELL, 4000).then(res => res || Response.error()));
+  event.respondWith(networkFirst(req, SHELL, 1500).then(res => res || Response.error()));
 });

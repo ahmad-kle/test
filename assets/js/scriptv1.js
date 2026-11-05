@@ -539,22 +539,34 @@ async function loadSettings() {
     } catch(err) { console.error(err); }
 }
 
+// شاشة البداية ترتبط بتحميل البيانات الأساسية فعلياً، وليس بحدث DOM فقط.
+const homeBootStartedAt = Date.now();
+let homeSplashReleased = false;
+function releaseHomeSplash() {
+    if (homeSplashReleased) return;
+    homeSplashReleased = true;
+    const splash = document.getElementById('splashScreen');
+    if (!splash) return;
+    const minVisible = 850;
+    const wait = Math.max(0, minVisible - (Date.now() - homeBootStartedAt));
+    window.setTimeout(() => splash.classList.add('hidden'), wait);
+}
+
 async function loadData() {
     try {
-        await loadSettings();
-        const [catSnap, prodSnap, coupSnap] = await Promise.all([
+        // البيانات الضرورية لعرض الصفحة: الأقسام والمنتجات فقط.
+        // لا نؤخر ظهور المتجر بانتظار إعدادات الدفع أو الكوبونات.
+        const [catSnap, prodSnap] = await Promise.all([
             db.ref('categories').once('value'),
-            db.ref('products').once('value'),
-            db.ref('coupons').once('value')
+            db.ref('products').once('value')
         ]);
+
         categories = catSnap.exists() ? Object.keys(catSnap.val()).map(k => ({ id: k, ...catSnap.val()[k] })) : [];
         products = prodSnap.exists() ? Object.keys(prodSnap.val()).map(k => ({ id: k, ...prodSnap.val()[k] })) : [];
-        coupons = coupSnap.exists() ? Object.keys(coupSnap.val()).map(k => ({ id: k, ...coupSnap.val()[k] })) : [];
-
         categories = categories.filter(c => c.active !== false).sort((a,b) => (a.order||0)-(b.order||0));
         products = products.filter(p => p.active !== false);
-        coupons = coupons.filter(c => c.active !== false);
 
+        // اعرض المتجر فور جاهزية البيانات الأساسية.
         renderNavbar();
         renderCategoriesGrid();
         renderFilterTabs();
@@ -563,9 +575,22 @@ async function loadData() {
         updateActiveFilterChip();
         setupRealtimeListeners();
         updateCartUI();
+        requestAnimationFrame(releaseHomeSplash);
+
+        // بيانات ثانوية تُحمّل بالخلفية ولا تمنع ظهور الصفحة الرئيسية.
+        Promise.allSettled([loadSettings(), db.ref('coupons').once('value')]).then(results => {
+            const couponResult = results[1];
+            if (couponResult.status === 'fulfilled') {
+                const snap = couponResult.value;
+                coupons = snap.exists() ? Object.keys(snap.val()).map(k => ({ id: k, ...snap.val()[k] })) : [];
+                coupons = coupons.filter(c => c.active !== false);
+            }
+        });
     } catch (err) {
-        console.error(err);
-        showToast('خطأ في تحميل البيانات', true);
+        console.error('تعذر تحميل بيانات المتجر الأساسية:', err);
+        showToast('تعذر تحميل المنتجات حالياً، تحقق من الاتصال وحاول مجدداً', true);
+        // لا نترك شاشة البداية عالقة إلى ما لا نهاية عند تعذر Firebase.
+        releaseHomeSplash();
     }
 }
 
@@ -1909,13 +1934,10 @@ window.buildOrderWhatsAppUrl = buildOrderWhatsAppUrl;
     }
 })();
 
-// Splash screen hider
-window.addEventListener('load', function() {
-    const splash = document.getElementById('splashScreen');
-    if (splash) {
-        setTimeout(() => { splash.classList.add('hidden'); }, 1200);
-    }
-});
+// Fallback فقط: في حال لم يستطع Firebase الرد، لا نحجب الصفحة بلا نهاية.
+window.setTimeout(() => {
+    if (!homeSplashReleased) releaseHomeSplash();
+}, 9000);
 
 console.log('✅ scriptv1.js loaded — search suggestions fixed + no bulk badge on image');
 // =============================================
