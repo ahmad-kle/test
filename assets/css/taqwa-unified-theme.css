@@ -1,0 +1,246 @@
+/* ============================================================
+   متجر الكردي للزينة — نظام الثيم المزدوج v6
+   هوية واحدة: أبيض + أزرق (وضع نهاري فقط)
+   ============================================================ */
+
+:root{
+  --tq-radius:20px;
+  --tq-ease:cubic-bezier(.2,.75,.25,1);
+  --tq-glass-dark:rgba(20,19,16,.88);
+  --tq-glass-light:rgba(255,255,255,.85);
+}
+
+/* ================= الوضع النهاري (أزرق كاشف) ================= */
+html[data-theme="light"]{
+  color-scheme:light;
+  --tq-bg:#fdfbf6; --tq-bg2:#faf4e9; --tq-panel:#ffffff; --tq-panel2:#fcf8f1;
+  --tq-text:#292314; --tq-muted:#6c5d3e; --tq-border:#f2e5c9;
+  --tq-primary:#9f7928; --tq-primary2:#cd9e37;
+  --tq-primary-soft:rgba(159,121,40,.09);
+  --tq-shadow:0 10px 28px rgba(124,95,31,.10);
+  --tq-glow:rgba(205,158,55,.26);
+  --tq-glass:var(--tq-glass-light);
+  --primary:#9f7928; --primary-light:#cd9e37; --primary-lighter:#fcf8f1;
+  --primary-lightest:#fdfbf6; --primary-dark:#7c5f1f; --primary-darker:#524426;
+  --secondary:#cd9e37; --accent:#cd9e37; --accent-light:#faf4e9;
+  --bg-light:#fdfbf6; --bg-lighter:#faf4e9; --bg-white:#ffffff;
+  --text-dark:#292314; --text-medium:#55482b; --text-light:#6c5d3e;
+  --border:#f2e5c9;
+  --gradient-primary:linear-gradient(135deg,#9f7928 0%,#cd9e37 100%);
+  --gradient-soft:linear-gradient(135deg,#fcf8f1 0%,#f8f1e3 100%);
+  --gradient-hero:radial-gradient(ellipse at 80% -10%,rgba(205,158,55,.14),transparent 55%),linear-gradient(160deg,#ffffff,#faf4e9);
+}
+
+/* ---------- الانتقال السلس عند تبديل الثيم ---------- */
+html.tq-anim, html.tq-anim *, html.tq-anim *::before, html.tq-anim *::after{
+  transition:background-color .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,fill .45s ease,stroke .45s ease !important;
+}
+
+/* ---------- الأساسيات ---------- */
+html,body{background:var(--tq-bg)!important;color:var(--tq-text)!important}
+body{
+  background-image:radial-gradient(ellipse at 85% 0%,var(--tq-primary-soft),transparent 40%);
+  overflow-x:hidden;
+}
+::selection{background:var(--tq-primary-soft);color:var(--tq-text)}
+a,button,input,select,textarea{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--tq-primary);outline-offset:3px;
+}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:var(--tq-bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--tq-primary),var(--tq-primary2));border-radius:99px}
+
+/* ---------- الأسطح والبطاقات (متجر + لوحة التحكم) ---------- */
+header,footer,nav,.main-header,.main-footer,.bottom-nav,.cart-sidebar,
+.card,.panel,.widget,.product-card,.category-card,.feature-card,.order-card,.stat-card,.stats-card,
+.chart-card,.chart-container,.table-container,.table-responsive,.form-container,.track-card,.tracking-card,
+.about-card,.contact-card,.info-card,.order-status-card,.status-card,.analytics-card,.visitors-card,
+.form-card,.item-card,.top-products,.top-products-list,.mini-chart,.edit-form,.items-list,
+.main-content,.admin-content,.dashboard-content,.page-content,.content,.section,.tab-content{
+  background-color:var(--tq-panel)!important;color:var(--tq-text)!important;
+  border-color:var(--tq-border)!important;
+}
+.sidebar,.admin-sidebar,.topbar,.admin-header,.header,.sidebar-brand,.sidebar-menu,.sidebar-footer{
+  background:var(--tq-panel)!important;color:var(--tq-text)!important;border-color:var(--tq-border)!important;
+}
+
+/* ---------- المدخلات والجداول ---------- */
+input,select,textarea,.form-control,.form-select,.search-box{
+  background:var(--tq-panel2)!important;color:var(--tq-text)!important;border-color:var(--tq-border)!important;
+}
+input::placeholder,textarea::placeholder{color:var(--tq-muted)!important}
+table,thead,tbody,tr,th,td{
+  background-color:transparent!important;border-color:var(--tq-border)!important;color:var(--tq-text)!important;
+}
+.invoice-table thead,.invoice-totals{background:var(--tq-panel2)!important}
+
+/* ---------- الأزرار ---------- */
+button,.btn,.btn-primary,.primary-btn,.search-btn,.checkout-btn,.track-btn,.success-track-btn,
+.load-more-btn,.load-more-admin,.file-upload-btn,.login-box button{
+  background:var(--gradient-primary)!important;color:#fff!important;
+  border:1px solid transparent!important;
+}
+button:hover,.btn:hover,.primary-btn:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 8px 22px var(--tq-glow)}
+.btn-secondary{background:var(--tq-panel2)!important;color:var(--tq-text)!important;border-color:var(--tq-border)!important}
+.btn-success{background:linear-gradient(135deg,#0da95e,#07c46b)!important;color:#fff!important}
+.btn-danger{background:linear-gradient(135deg,#d30f0f,#8f0606)!important;color:#fff!important}
+
+/* ---------- الشارات ---------- */
+.badge,.badge-active,.badge-status-processing,.badge .green{background:rgba(13,169,94,.15)!important;color:#1ec97a!important}
+.badge-inactive,.badge-status-new,.badge .orange{background:var(--tq-primary-soft)!important;color:var(--tq-primary)!important}
+.badge-order,.badge-payment,.badge .blue{background:rgba(188,143,47,.15)!important;color:var(--tq-primary2)!important}
+.badge-coupon,.coupon-used-badge{background:rgba(150,80,255,.15)!important;color:#b07bff!important}
+.badge-status-shipped{background:rgba(255,170,0,.15)!important;color:#ffb020!important}
+
+/* ============================================================
+   طبقة التأثيرات الفخمة
+   ============================================================ */
+.main-header,.admin-header,.topbar{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.main-header{transition:box-shadow .25s ease,background .25s ease}
+.main-header.is-scrolled{box-shadow:0 12px 35px rgba(0,0,0,.18);border-bottom:1px solid var(--tq-primary-soft)}
+
+.taqwa-category-card,.product-card,.products-grid>*:not(.taqwa-empty-products),.feature-item,
+.stat-card,.stats-card,.card,.panel,.widget,.chart-card,.track-card,.item-card,.order-card{
+  position:relative;isolation:isolate;overflow:hidden;
+  transition:transform .32s var(--tq-ease),box-shadow .32s ease,border-color .32s ease,background .28s ease!important;
+}
+.taqwa-category-card::before,.product-card::before,.products-grid>*:not(.taqwa-empty-products)::before,
+.feature-item::before,.stat-card::before,.card::before,.item-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;
+  background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.14) 45%,transparent 70%);
+  transform:translateX(-120%);transition:transform .75s ease,opacity .3s ease;
+}
+.taqwa-category-card:hover::before,.product-card:hover::before,.products-grid>*:not(.taqwa-empty-products):hover::before,
+.feature-item:hover::before,.stat-card:hover::before,.card:hover::before,.item-card:hover::before{
+  opacity:1;transform:translateX(120%);
+}
+.taqwa-category-card:hover,.product-card:hover,.products-grid>*:not(.taqwa-empty-products):hover,
+.feature-item:hover,.stat-card:hover,.card:hover,.item-card:hover,.order-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--tq-primary)!important;
+  box-shadow:var(--tq-shadow),0 0 0 1px var(--tq-primary-soft),0 0 30px var(--tq-glow)!important;
+}
+.taqwa-category-card img,.product-card img,.products-grid img,.item-img{transition:transform .65s var(--tq-ease),filter .4s ease}
+.taqwa-category-card:hover img,.product-card:hover img,.products-grid>*:hover img{transform:scale(1.06);filter:saturate(1.1)}
+button,.btn,.action-btn,.search-btn,.checkout-btn{transition:transform .22s ease,filter .22s ease,box-shadow .22s ease!important}
+button:active,.btn:active{transform:scale(.96)}
+
+.taqwa-category-card::after,.product-card::after{
+  content:"";position:absolute;inset:auto 0 0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--tq-primary),var(--tq-primary2),transparent);
+  opacity:.75;
+}
+
+.tq-progress{position:fixed;top:0;right:0;height:3px;width:0;z-index:100000;
+  background:linear-gradient(90deg,var(--tq-primary),var(--tq-primary2));
+  box-shadow:0 0 14px var(--tq-glow);pointer-events:none}
+.tq-back-top{position:fixed;left:20px;bottom:22px;width:46px;height:46px;border-radius:14px!important;
+  border:1px solid var(--tq-primary)!important;background:var(--tq-panel)!important;color:var(--tq-text)!important;
+  z-index:9998;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(12px);
+  box-shadow:var(--tq-shadow);cursor:pointer}
+.tq-back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.tq-back-top:hover{box-shadow:0 0 0 4px var(--tq-primary-soft),var(--tq-shadow)}
+
+.tq-reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s var(--tq-ease)}
+.tq-reveal.tq-visible{opacity:1;transform:translateY(0)}
+
+.tq-ripple{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.32);transform:scale(0);animation:tqRipple .55s ease-out forwards}
+@keyframes tqRipple{to{transform:scale(3.5);opacity:0}}
+
+.invoice-preview-content,.invoice-table-wrapper,.invoice-info,.invoice-totals,.modal-content,
+.order-modal-content,.tracking-result,.track-card,.tracking-card,.tracking-code-display,.toast{
+  background:var(--tq-panel)!important;color:var(--tq-text)!important;border-color:var(--tq-border)!important;
+}
+.invoice-info p,.invoice-totals p,.invoice-table .product-name{color:var(--tq-text)!important}
+.invoice-table th,.invoice-table td{color:var(--tq-text)!important;border-color:var(--tq-border)!important}
+
+.taqwa-section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.taqwa-section-heading h2{font-weight:900;line-height:1.25}
+.taqwa-section-heading h2 b{
+  background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.taqwa-category-grid{gap:18px}
+.taqwa-category-card{border:1px solid var(--tq-border);border-radius:22px;background:var(--tq-panel);box-shadow:var(--tq-shadow)}
+.search-box{border:1px solid var(--tq-border);border-radius:999px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:border-color .25s,box-shadow .25s}
+.search-box:focus-within{border-color:var(--tq-primary);box-shadow:0 0 0 4px var(--tq-primary-soft)}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.filter-tabs button,.filter-tabs .filter-tab,.status-tab{
+  border:1px solid var(--tq-border)!important;border-radius:999px!important;
+  background:var(--tq-panel)!important;color:var(--tq-text)!important;padding:8px 14px!important;
+}
+.filter-tabs button.active,.filter-tabs .active,.status-tab.active{
+  background:var(--gradient-primary)!important;color:#fff!important;border-color:transparent!important;
+}
+.cart-sidebar{border-inline-start:1px solid var(--tq-border);box-shadow:-18px 0 50px rgba(0,0,0,.2)}
+.cart-header{border-bottom:1px solid var(--tq-border)}
+.cart-footer{border-top:1px solid var(--tq-border)}
+.features-bar{position:relative}
+.features-bar:before{content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--tq-primary2),var(--tq-primary),transparent)}
+.main-footer{border-top:1px solid var(--tq-border)}
+.nav-list a{color:var(--tq-text)!important}
+.nav-item.active a{color:var(--tq-primary2)!important}
+html[data-theme="light"] .hero-section{
+  background-image:radial-gradient(ellipse at 20% 100%,rgba(188,143,47,.12),transparent 50%),var(--gradient-hero);
+}
+.hero-section h1,.hero-section h2{text-wrap:balance;letter-spacing:-.4px}
+html[data-theme="light"] .products-section,html[data-theme="light"] .taqwa-categories{
+  background-image:linear-gradient(135deg,rgba(188,143,47,.03) 25%,transparent 25%,transparent 50%,rgba(188,143,47,.03) 50%,rgba(188,143,47,.03) 75%,transparent 75%);
+  background-size:22px 22px;
+}
+
+/* ---------- لوحة التحكم ---------- */
+.sidebar-item{color:var(--tq-muted)!important;border-radius:12px;transition:background .25s,color .25s,transform .2s}
+.sidebar-item:hover,.sidebar-item.active{background:var(--tq-primary-soft)!important;color:var(--tq-text)!important;transform:translateX(-3px)}
+.sidebar-item.active{border-inline-start:3px solid var(--tq-primary)}
+.stat-label,.text-muted,.muted,.subtitle{color:var(--tq-muted)!important}
+.stat-card .number{color:var(--tq-primary)!important;font-weight:900}
+.status-tabs{border-bottom:1px solid var(--tq-border)}
+.toast{border-radius:14px!important;box-shadow:var(--tq-shadow)!important}
+.empty-msg{color:var(--tq-muted)!important}
+.chart-container canvas{filter:drop-shadow(0 6px 14px var(--tq-glow))}
+.size-tag,.remove-tag,.total-count-badge{background:var(--tq-primary-soft)!important;color:var(--tq-primary2)!important}
+html[data-theme="light"] body:has(.login-box){
+  background:radial-gradient(circle at 15% 10%,#f8f1e2 0%,#fcf8f1 45%,#f8f1e3 100%)!important;
+}
+.login-box{
+  background:var(--tq-panel)!important;border:1px solid var(--tq-border)!important;
+  box-shadow:0 25px 60px var(--tq-glow)!important;backdrop-filter:blur(10px);
+}
+.login-box h2{color:var(--tq-text)!important}
+.login-box p,.footer-note{color:var(--tq-muted)!important}
+.login-box .error-message{background:var(--tq-primary-soft)!important;color:var(--tq-primary)!important}
+.login-box .input-group input{
+  background:var(--tq-panel2)!important;border:1px solid var(--tq-border)!important;color:var(--tq-text)!important;
+}
+.login-box .input-group input:focus{border-color:var(--tq-primary)!important;box-shadow:0 0 0 3px var(--tq-primary-soft)!important}
+
+@media(max-width:600px){
+  .tq-back-top{left:12px;bottom:138px;width:40px;height:40px}
+  .tq-reveal{transform:translateY(12px)}
+}
+@media(max-width:700px){
+  .taqwa-section-heading{align-items:flex-start;flex-direction:column;gap:8px}
+  .taqwa-category-grid{gap:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .tq-reveal{opacity:1;transform:none;transition:none}
+  .tq-ripple{display:none}
+}
+
+/* ---------- الشعار + إصلاحات موحدة ---------- */
+.logo img,.sidebar-brand img,.login-brand-logo,.footer-logo img{object-fit:contain;max-width:100%;height:auto}
+.taqwa-hero-cta{font-size:1rem;line-height:1.4}
+
+/* روابط التواصل الخاصة بالمتجر — هوية التقوى الزرقاء */
+.main-footer .social-links a,
+.main-footer .contact-info a,
+.main-footer .designer-links a { color: #8a6923; }
+.main-footer .social-links a:hover,
+.main-footer .contact-info a:hover,
+.main-footer .designer-links a:hover { color: #63522e; }
+.main-footer .social-links a { transition: color .2s ease, transform .2s ease; }
+.main-footer .social-links a:hover { transform: translateY(-2px); }
+.main-footer .contact-info i { color: #8a6923; }

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <link rel="apple-touch-icon" href="assets/img/kurdi-apple-touch-180.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script>window.__kdBip=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__kdBip=e;try{dispatchEvent(new Event('kd-bip'))}catch(_){}});</script>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#fcfaf5">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+    <title>تتبع طلبك - متجر الكردي للزينة</title>
+    <link rel="icon" type="image/png" href="assets/img/kurdi-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box}
+        :root { --primary:#9f7928; --primary-light:#cd9e37; --bg:#fcfaf5; --text-dark:#2a2314; --text-medium:#aea89c; --border:#f2e5c9; --shadow:0 8px 24px rgba(159,121,40,0.12)}
+        body { font-family:'Tajawal',sans-serif; background:var(--bg); min-height:100vh; display:flex; flex-direction:column}
+        .container { max-width:800px; margin:0 auto; padding:16px; width:100%}
+        .track-header { background:white; padding:16px 20px; border-bottom:2px solid var(--border); display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+        .track-header .logo { display:flex; align-items:center; gap:10px; text-decoration:none}
+        .track-header .logo img { width:48px; height:48px; border-radius:14px; object-fit:contain}
+        .track-header .logo h1 { font-size:1.2rem; color:var(--primary); font-weight:800}
+        .track-header .back-btn { margin-right:auto; background:var(--border); border:none; padding:8px 16px; border-radius:30px; color:var(--text-dark); font-weight:500; cursor:pointer; display:flex; align-items:center; gap:6px; font-family:'Tajawal',sans-serif; transition:0.2s}
+        .track-header .back-btn:hover { background:var(--primary); color:white}
+        .track-card { background:white; border-radius:28px; padding:24px; margin-top:20px; box-shadow:var(--shadow); border:1px solid var(--border)}
+        .track-card h2 { color:var(--text-dark); font-size:1.3rem; margin-bottom:8px; display:flex; align-items:center; gap:10px}
+        .track-card h2 i { color:var(--primary)}
+        .track-card .subtitle { color:var(--text-medium); font-size:0.9rem; margin-bottom:20px}
+        .search-form { display:flex; flex-direction:column; gap:12px}
+        .search-form .input-group { display:flex; flex-direction:column; gap:6px}
+        .search-form label { font-weight:600; color:var(--text-dark); font-size:0.85rem}
+        .search-form input { padding:14px 18px; border:2px solid var(--border); border-radius:50px; font-family:'Tajawal',sans-serif; font-size:1rem; background:white; transition:0.2s; width:100%; text-align:center; letter-spacing:2px; font-weight:700; color:var(--text-dark)}
+        .search-form input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 4px rgba(159,121,40,0.08)}
+        .search-form input::placeholder { letter-spacing:0; font-weight:400; color:var(--text-medium)}
+        .search-form .search-btn { background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:white; border:none; padding:14px; border-radius:50px; font-size:1rem; font-weight:700; cursor:pointer; transition:0.3s; display:flex; align-items:center; justify-content:center; gap:8px; font-family:'Tajawal',sans-serif; width:100%}
+        .search-form .search-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(159,121,40,0.3)}
+        .search-form .hint { text-align:center; color:var(--text-medium); font-size:0.75rem; margin-top:4px}
+        .result-box { margin-top:20px; display:none; animation:fadeIn 0.4s ease}
+        .result-box.active { display:block}
+        @keyframes fadeIn { from { opacity:0; transform:translateY(12px)} to { opacity:1; transform:translateY(0)} }
+        .result-box .order-status { display:flex; align-items:center; gap:12px; padding:16px; border-radius:20px; background:#ffffff; margin-bottom:16px}
+        .result-box .order-status .status-icon { font-size:2rem; width:60px; height:60px; display:flex; align-items:center; justify-content:center; background:white; border-radius:50%; color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+        .result-box .order-status .status-info { flex:1}
+        .result-box .order-status .status-info .status-label { font-size:0.75rem; color:var(--text-medium)}
+        .result-box .order-status .status-info .status-value { font-size:1.2rem; font-weight:800; color:var(--text-dark)}
+        .result-box .order-status .status-info .status-value .badge { display:inline-block; padding:4px 14px; border-radius:30px; font-size:0.8rem; font-weight:700; color:white; margin-right:8px}
+        .badge-new { background:#ce9f3b}
+        .badge-processing { background:#ffa502}
+        .badge-shipped { background:#2ed573}
+        .badge-cancelled { background:#ff4757}
+        .result-box .order-details { background:white; border-radius:20px; padding:16px; border:1px solid var(--border); margin-top:12px}
+        .result-box .order-details .detail-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #f8f0f2; font-size:0.9rem}
+        .result-box .order-details .detail-row:last-child { border-bottom:none}
+        .result-box .order-details .detail-row .label { color:var(--text-medium)}
+        .result-box .order-details .detail-row .value { font-weight:600; color:var(--text-dark)}
+        .result-box .order-items { margin-top:16px}
+        .result-box .order-items h4 { font-size:1rem; color:var(--text-dark); margin-bottom:10px}
+        .result-box .order-items .item-row { display:flex; align-items:center; gap:12px; padding:8px 12px; background:#fffafc; border-radius:16px; margin-bottom:8px; border:1px solid #f8f0f2; flex-wrap:wrap}
+        .result-box .order-items .item-row img { width:48px; height:48px; object-fit:cover; border-radius:12px; border:1px solid var(--border)}
+        .result-box .order-items .item-row .item-info { flex:1}
+        .result-box .order-items .item-row .item-info .item-name { font-weight:600; color:var(--text-dark); font-size:0.85rem}
+        .result-box .order-items .item-row .item-info .item-meta { font-size:0.7rem; color:var(--text-medium)}
+        .result-box .order-items .item-row .item-qty-price { font-weight:700; color:var(--primary); font-size:0.85rem; white-space:nowrap}
+        .result-box .order-total { margin-top:16px; padding:12px 16px; background:var(--primary); color:white; border-radius:20px; display:flex; justify-content:space-between; font-weight:800; font-size:1.1rem}
+        .result-box .not-found { text-align:center; padding:30px 20px; color:var(--text-medium)}
+        .result-box .not-found i { font-size:3rem; color:var(--border); margin-bottom:12px}
+        .result-box .tracking-code-display { background:#fcfaf5; border:2px dashed var(--primary); border-radius:16px; padding:12px; text-align:center; margin-bottom:16px}
+        .result-box .tracking-code-display .code { font-size:1.3rem; font-weight:800; color:var(--primary); letter-spacing:3px}
+        .footer-credit { text-align:center; margin-top:30px; padding:16px; font-size:0.7rem; color:var(--text-medium); border-top:1px solid var(--border)}
+        .footer-credit .social-mini { display:flex; justify-content:center; gap:10px; margin-bottom:10px}
+        .footer-credit .social-mini a { color:var(--primary); text-decoration:none; width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; background:white; border-radius:50%; border:1px solid var(--border); transition:0.2s}
+        .footer-credit .social-mini a:hover { background:var(--primary); color:white}
+        .loading-spinner { display:none; text-align:center; padding:20px}
+        .loading-spinner i { font-size:2rem; color:var(--primary); animation:spin 1s linear infinite}
+        @keyframes spin { to { transform:rotate(360deg)} }
+        @media (max-width: 480px) {
+            .track-card { padding:16px}
+            .result-box .order-status { flex-direction:column; text-align:center}
+            .result-box .order-status .status-icon { width:50px; height:50px; font-size:1.5rem}
+            .result-box .order-items .item-row { flex-direction:column; align-items:stretch; text-align:center}
+            .result-box .order-items .item-row img { margin:0 auto}
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/taqwa-unified-theme.css?v=6">
+    <link rel="stylesheet" href="assets/css/taqwa-v7.css?v=7">
+    <link rel="stylesheet" href="assets/css/kurdi-theme.css?v=1">
+    <script src="assets/js/taqwa-theme.js" defer></script>
+    <script src="assets/js/kurdi-motion.js?v=1" defer></script>
+<style>.designer-name,strong{color:#aa822b}</style>
+<style>
+.nexora-footer-contact {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:9px 18px;
+  padding:0 12px 16px;
+  margin:0 auto;
+  direction:rtl;
+  text-align:center;
+  background:var(--bg-white,#fff);
+  font-size:.82rem;
+}
+.nexora-footer-contact a {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#9f7928;
+  text-decoration:none;
+  font-weight:600;
+  white-space:nowrap;
+}
+.nexora-footer-contact a:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-contact svg { width:16px;height:16px;flex:0 0 16px; }
+@media(max-width:480px) {
+  .nexora-footer-contact { gap:8px 13px; font-size:.76rem; }
+}
+</style>
+<style>
+.nexora-footer-credit {
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  gap:8px 14px; padding:14px 12px; margin:0 auto; text-align:center;
+  direction:ltr; color:var(--text-medium,#55482b); font-size:.82rem;
+  border-top:1px solid var(--border,#f2e5c9); background:var(--bg-white,#fff);
+}
+.nexora-footer-credit .nexora-credit-link { color:#9f7928; text-decoration:none; font-weight:800; }
+.nexora-footer-credit .nexora-credit-link:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-credit .nexora-copy { color:var(--text-medium,#55482b); }
+</style>
+</head>
+<body>
+    <header class="track-header">
+        <a href="index.html" class="logo">
+            <img src="assets/img/kurdi-icon.png" alt="متجر الكردي للزينة" />
+            <h1>متجر الكردي للزينة</h1>
+        </a>
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-right"></i> العودة
+        </button>
+    </header>
+
+    <div class="container">
+        <div class="track-card">
+            <h2><i class="fas fa-truck"></i> تتبع طلبك</h2>
+            <p class="subtitle">أدخل رمز التتبع المرفق مع تأكيد طلبك</p>
+            <form class="search-form" id="trackForm">
+                <div class="input-group">
+                    <label for="trackingCodeInput"><i class="fas fa-key"></i> رمز التتبع</label>
+                    <input type="text" id="trackingCodeInput" placeholder="مثال: TAQ-XXXXXX" required autocomplete="off" />
+                </div>
+                <button type="submit" class="search-btn" id="trackBtn">
+                    <i class="fas fa-search"></i> تتبع الطلب
+                </button>
+                <div class="hint">
+                    <i class="fas fa-info-circle"></i> أدخل الرمز الظاهر في رسالة تأكيد الطلب (مثل: TAQ-XXXXXX)
+                </div>
+            </form>
+            <div class="loading-spinner" id="loadingSpinner">
+                <i class="fas fa-spinner"></i>
+                <p style="color:var(--text-medium); margin-top:8px">جاري البحث...</p>
+            </div>
+            <div class="result-box" id="resultBox"></div>
+        </div>
+
+        <div class="footer-credit">
+            <div class="social-mini">
+                <a href="#" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank" title="فيسبوك"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" title="الموقع على الخريطة"><i class="fas fa-map-marker-alt"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/taqwa-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = window.TAQWA_CONFIG.firebase;
+        if (!firebase.apps || !firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const form = document.getElementById('trackForm');
+        const trackingInput = document.getElementById('trackingCodeInput');
+        const resultBox = document.getElementById('resultBox');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        function getStatusBadge(status) {
+            const map = {
+                'new': '<span class="badge badge-new">جديد</span>',
+                'processing': '<span class="badge badge-processing">قيد التجهيز</span>',
+                'shipped': '<span class="badge badge-shipped">تم الشحن</span>',
+                'cancelled': '<span class="badge badge-cancelled">ملغي</span>'
+            };
+            return map[status] || '<span class="badge badge-new">جديد</span>';
+        }
+
+        async function searchOrder(trackingCode) {
+            loadingSpinner.style.display = 'block';
+            resultBox.classList.remove('active');
+            resultBox.innerHTML = '';
+            try {
+                if (window.taqwaFirebaseConfigured && !window.taqwaFirebaseConfigured()) {
+                    showError('المتجر غير مربوط بقاعدة البيانات بعد.');
+                    return;
+                }
+                const code = String(trackingCode || '').trim().toUpperCase();
+                if (!/^TAQ-[A-Z0-9]{6}$/.test(code)) {
+                    showError('يرجى إدخال رمز تتبع صحيح.');
+                    return;
+                }
+                // This path contains ONLY the public status, never customer/order details.
+                const snap = await db.ref('publicTracking/' + code).once('value');
+                if (!snap.exists() || !snap.child('status').exists()) {
+                    resultBox.innerHTML = `<div class="not-found"><i class="fas fa-search"></i><p>لم يتم العثور على طلب بهذا الرمز.</p><p style="font-size:0.85rem;color:var(--text-medium)">تأكد من صحة رمز التتبع</p></div>`;
+                    resultBox.classList.add('active');
+                    return;
+                }
+                const status = String(snap.child('status').val() || 'new');
+                const statusText = { 'new': 'جديد', 'processing': 'قيد التجهيز', 'shipped': 'تم الشحن', 'cancelled': 'ملغي' }[status] || 'جديد';
+                resultBox.innerHTML = `
+                    <div class="tracking-code-display">
+                        <span style="font-size:0.8rem;color:var(--text-medium)">رمز التتبع</span>
+                        <div class="code"></div>
+                    </div>
+                    <div class="order-status">
+                        <div class="status-icon"><i class="fas ${status === 'shipped' ? 'fa-check-circle' : status === 'processing' ? 'fa-cog fa-spin' : 'fa-clock'}"></i></div>
+                        <div class="status-info">
+                            <div class="status-label">حالة الطلب</div>
+                            <div class="status-value"><span class="status-badge"></span> <span style="font-size:0.85rem;color:var(--text-medium);margin-right:8px"></span></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:16px;text-align:center;font-size:0.8rem;color:var(--text-medium)"><i class="fas fa-info-circle"></i> يتم تحديث حالة الطلب من قبل فريق متجر الكردي للزينة.</div>`;
+                resultBox.querySelector('.tracking-code-display .code').textContent = code;
+                resultBox.querySelector('.status-badge').outerHTML = getStatusBadge(status);
+                resultBox.querySelector('.status-value span:last-child').textContent = statusText;
+                resultBox.classList.add('active');
+            } catch (err) {
+                console.error(err);
+                showError('تعذّر الاتصال بقاعدة البيانات. حاول مرة أخرى.');
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+        function showError(msg) {
+            resultBox.innerHTML = `<div class="not-found"><i class="fas fa-exclamation-circle" style="color:#ff4757"></i><p>${msg}</p></div>`;
+            resultBox.classList.add('active');
+        }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const code = trackingInput.value.trim();
+            if (code.length < 4) { showError('⚠️ يرجى إدخال رمز تتبع صحيح'); return; }
+            searchOrder(code);
+        });
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            if (code && code.trim().length >= 4) {
+                trackingInput.value = code.trim().toUpperCase();
+                setTimeout(() => { searchOrder(code.trim().toUpperCase()); }, 400);
+            }
+        })();
+    </script>
+<div class="footer-designer-credit nexora-footer-credit" aria-label="حقوق التصميم والنشر">
+        <span>Designed &amp; Developed by <a class="nexora-credit-link" href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer">NEXORA</a></span>
+        <span class="nexora-copy">© 2026 NEXORA. All Rights Reserved.</span>
+    </div>
+<script src="assets/js/pwa-install.js" defer></script>
+</body>
+</html>

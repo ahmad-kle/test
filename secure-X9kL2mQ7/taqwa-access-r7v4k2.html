@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta name="theme-color" content="#fcfaf5">
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>متجر الكردي للزينة | دخول الإدارة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+<link rel="icon" type="image/png" href="../assets/img/kurdi-favicon.png">
+<link rel="stylesheet" href="../assets/css/taqwa-unified-theme.css?v=6">
+<link rel="stylesheet" href="../assets/css/kurdi-theme.css?v=1">
+<script src="../assets/js/taqwa-theme.js" defer></script>
+<style>
+.nexora-footer-credit {
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  gap:8px 14px; padding:14px 12px; margin:0 auto; text-align:center;
+  direction:ltr; color:var(--text-medium,#55482b); font-size:.82rem;
+  border-top:1px solid var(--border,#f2e5c9); background:var(--bg-white,#fff);
+}
+.nexora-footer-credit .nexora-credit-link { color:#9f7928; text-decoration:none; font-weight:800; }
+.nexora-footer-credit .nexora-credit-link:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-credit .nexora-copy { color:var(--text-medium,#55482b); }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <img class="login-brand-logo" src="../assets/img/kurdi-icon.png" alt="شعار متجر الكردي للزينة"><h2>متجر الكردي للزينة</h2>
+      <p>دخول النظام</p>
+      <div class="input-group">
+        <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <input type="password" id="loginPassword" placeholder="كلمة المرور" autocomplete="off" />
+      </div>
+      <button id="loginButton">دخول</button>
+      <div id="errorMsg" class="error-message"></div>
+      <div class="footer-designer-credit nexora-footer-credit" aria-label="حقوق التصميم والنشر">
+  <span>Designed &amp; Developed by <a class="nexora-credit-link" href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer">NEXORA</a></span>
+  <span class="nexora-copy">© 2026 NEXORA. All Rights Reserved.</span>
+</div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="../assets/js/taqwa-config.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

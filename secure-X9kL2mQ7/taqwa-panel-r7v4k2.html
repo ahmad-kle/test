@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta name="theme-color" content="#fcfaf5">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>متجر الكردي للزينة | لوحة الإدارة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="icon" type="image/png" href="../assets/img/kurdi-favicon.png">
+  <link rel="stylesheet" href="../assets/css/taqwa-unified-theme.css?v=6">
+<link rel="stylesheet" href="../assets/css/kurdi-theme.css?v=1">
+  <script src="../assets/js/taqwa-theme.js" defer></script>
+<style>
+.nexora-footer-credit {
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  gap:8px 14px; padding:14px 12px; margin:0 auto; text-align:center;
+  direction:ltr; color:var(--text-medium,#55482b); font-size:.82rem;
+  border-top:1px solid var(--border,#f2e5c9); background:var(--bg-white,#fff);
+}
+.nexora-footer-credit .nexora-credit-link { color:#9f7928; text-decoration:none; font-weight:800; }
+.nexora-footer-credit .nexora-credit-link:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-credit .nexora-copy { color:var(--text-medium,#55482b); }
+</style>
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><img src="../assets/img/kurdi-icon.png" alt="شعار متجر الكردي للزينة"><span>متجر الكردي للزينة<small>MOTORCYCLE PARTS</small></span></div>
+    <div class="sidebar-menu">
+      <div class="sidebar-item active" data-tab="dashboard"><i class="fas fa-chart-pie"></i> لوحة الإحصائيات</div>
+      <div class="sidebar-item" data-tab="orders"><i class="fas fa-truck"></i> الطلبات</div>
+      <div class="sidebar-item" data-tab="products"><i class="fas fa-box"></i> المنتجات</div>
+      <div class="sidebar-item" data-tab="categories"><i class="fas fa-layer-group"></i> الأقسام</div>
+
+      <div class="sidebar-item" data-tab="coupons"><i class="fas fa-ticket-alt"></i> الكوبونات</div>
+      <div class="sidebar-item" data-tab="ads"><i class="fas fa-ad"></i> الإعلانات</div>
+      <div class="sidebar-item" data-tab="settings"><i class="fas fa-cog"></i> الإعدادات</div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-item" onclick="loadAllData()"><i class="fas fa-sync-alt"></i> تحديث البيانات</div>
+      <div class="sidebar-item" onclick="logout()" style="color:#9f7928"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title">
+        <button class="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+        <span><i class="fas fa-crown"></i> لوحة التحكم</span>
+      </div>
+    </div>
+
+    <div id="tabDashboard" class="tab-content active">
+      <h2 style="color:#2a2314; margin-bottom:16px"><i class="fas fa-chart-line" style="color:var(--primary)"></i> نظرة عامة</h2>
+      <div class="stats-grid">
+        <div class="stat-card"><span class="number" id="statTotalProducts">0</span><span class="label">إجمالي المنتجات</span></div>
+        <div class="stat-card green"><span class="number" id="statActiveProducts">0</span><span class="label">منتجات نشطة</span></div>
+        <div class="stat-card orange"><span class="number" id="statTotalOrders">0</span><span class="label">إجمالي الطلبات</span></div>
+        <div class="stat-card blue"><span class="number" id="statTodaySales">0 $</span><span class="label">مبيعات اليوم</span></div>
+        <div class="stat-card purple"><span class="number" id="statMonthSales">0 $</span><span class="label">مبيعات الشهر</span></div>
+        <div class="stat-card"><span class="number" id="statYearSales">0 $</span><span class="label">مبيعات السنة</span></div>
+      </div>
+      <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px,1fr))">
+        <div class="stat-card"><span class="number" id="statNewOrders">0</span><span class="label">جديد</span></div>
+        <div class="stat-card"><span class="number" id="statProcessingOrders">0</span><span class="label">قيد التجهيز</span></div>
+        <div class="stat-card"><span class="number" id="statShippedOrders">0</span><span class="label">تم الشحن</span></div>
+      </div>
+      <div style="background:white; border-radius:18px; padding:16px; border:1px solid #f2e5c9; margin-top:16px">
+        <h4 style="color:#2a2314; margin-bottom:10px"><i class="fas fa-trophy" style="color:var(--primary)"></i> أكثر المنتجات طلباً</h4>
+        <div id="topProductsList" style="font-size:0.85rem"></div>
+      </div>
+      <div style="background:white; border-radius:18px; padding:16px; border:1px solid #f2e5c9; margin-top:16px">
+        <h4 style="color:#2a2314; margin-bottom:10px"><i class="fas fa-chart-bar" style="color:var(--primary)"></i> اتجاه المبيعات (آخر 7 أيام)</h4>
+        <div class="mini-chart" id="miniChart" style="height:100px; align-items:flex-end; gap:8px"></div>
+      </div>
+      <div style="background:white; border-radius:18px; padding:16px; border:1px solid #f2e5c9; margin-top:16px">
+        <h4 style="color:#2a2314; margin-bottom:10px"><i class="fas fa-user-friends" style="color:var(--primary)"></i> إحصائيات الزوار</h4>
+        <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">
+          <div class="stat-card"><span class="number" id="visitorsToday">-</span><span class="label">اليوم</span></div>
+          <div class="stat-card"><span class="number" id="visitorsWeek">-</span><span class="label">هذا الأسبوع</span></div>
+          <div class="stat-card"><span class="number" id="visitorsMonth">-</span><span class="label">هذا الشهر</span></div>
+          <div class="stat-card"><span class="number" id="visitorsTotal">-</span><span class="label">الإجمالي</span></div>
+        </div>
+        <button class="btn btn-secondary" onclick="fetchVisitorStats()" style="width:auto; padding:6px 20px; margin-top:6px"><i class="fas fa-sync-alt"></i> تحديث</button>
+      </div>
+    </div>
+
+    <div id="tabOrders" class="tab-content">
+      <h3 style="margin-bottom:12px"><i class="fas fa-truck"></i> الطلبات</h3>
+      <div class="status-tabs" id="orderStatusTabs">
+        <button class="status-tab active" data-status="all">الكل <span class="count" id="countAll">0</span></button>
+        <button class="status-tab" data-status="new">جديد <span class="count" id="countNew">0</span></button>
+        <button class="status-tab" data-status="processing">قيد التجهيز <span class="count" id="countProcessing">0</span></button>
+        <button class="status-tab" data-status="shipped">تم الشحن <span class="count" id="countShipped">0</span></button>
+      </div>
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchOrders" placeholder="ابحث: الاسم أو الهاتف أو رمز التتبع...">
+        <button class="clear-search" id="clearSearchOrders" onclick="clearSearch('searchOrders','clearSearchOrders')"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="ordersList" class="items-list"></div>
+    </div>
+
+    <div id="tabProducts" class="tab-content">
+      <div class="form-card">
+        <h3><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h3>
+        <div class="row-2"><input type="text" id="prodName" placeholder="اسم المنتج"><input type="text" id="prodPrice" placeholder="السعر $"></div>
+        <div class="row-2"><input type="text" id="prodOld" placeholder="السعر قبل الخصم"><input type="text" id="prodCode" placeholder="رمز المنتج (اختياري)"></div>
+        <div class="row-2"><input type="number" id="prodQuantity" placeholder="الكمية" value="99"><select id="prodCategory"><option value="">اختر القسم</option></select></div>
+        
+        <textarea id="prodDesc" rows="2" placeholder="وصف المنتج"></textarea>
+
+        <!-- صور المنتج -->
+        <div style="background:#fcfaf5; padding:12px; border-radius:16px; margin:12px 0">
+          <label>صور المنتج (حتى 3) — سيتم ضغطها تلقائياً إلى ~150-200KB</label>
+          <div class="image-upload-row">
+            <div><div class="file-upload-btn" onclick="document.getElementById('prodImageFile1').click()">الصورة 1</div><input type="file" id="prodImageFile1" accept="image/*" style="display:none"><div id="prodFileName1" style="font-size:0.7rem">📷 لم يتم اختيار ملف</div></div>
+            <div><div class="file-upload-btn" onclick="document.getElementById('prodImageFile2').click()">الصورة 2</div><input type="file" id="prodImageFile2" accept="image/*" style="display:none"><div id="prodFileName2" style="font-size:0.7rem">📷 لم يتم اختيار ملف</div></div>
+            <div><div class="file-upload-btn" onclick="document.getElementById('prodImageFile3').click()">الصورة 3</div><input type="file" id="prodImageFile3" accept="image/*" style="display:none"><div id="prodFileName3" style="font-size:0.7rem">📷 لم يتم اختيار ملف</div></div>
+          </div>
+        </div>
+
+        <!-- المقاسات والألوان -->
+        <div style="background:#fcfaf5; padding:12px; border-radius:16px; margin:12px 0"><label>المقاسات</label><div id="sizesContainer" style="display:flex;flex-wrap:wrap;gap:5px;margin:8px 0"></div><div class="row-2"><input type="text" id="sizeInput" placeholder="مقاس"><button class="btn btn-secondary" onclick="addSize()">+ إضافة</button></div></div>
+        <div style="background:#fcfaf5; padding:12px; border-radius:16px; margin:12px 0"><label>الألوان</label><div id="colorsContainer" style="display:flex;flex-wrap:wrap;gap:5px;margin:8px 0"></div><div class="row-2"><input type="text" id="colorInput" placeholder="لون"><button class="btn btn-secondary" onclick="addColor()">+ إضافة</button></div></div>
+
+        <!-- أسعار الجملة (جديد) -->
+        <div style="background:#fff8e1; padding:12px; border-radius:16px; margin:12px 0; border:2px solid #ffd93d">
+          <label><i class="fas fa-tags" style="color:#e6a700"></i> أسعار الجملة (عند شراء كمية أكبر)</label>
+          <div style="font-size:0.75rem; color:#aea89c; margin:6px 0 10px">
+            <i class="fas fa-info-circle"></i> حدد الكمية والسعر — مثلاً: "عند شراء 10 قطعة أو أكثر → 4.50$ للقطعة"
+          </div>
+          <div id="bulkPricingContainer" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px"></div>
+          <div class="row-2">
+            <input type="number" id="bulkQtyInput" placeholder="الكمية (مثلاً 10)" min="2">
+            <input type="number" id="bulkPriceInput" placeholder="السعر للقطعة" step="0.01" min="0">
+            <button class="btn btn-secondary" onclick="addBulkTier()"><i class="fas fa-plus"></i> إضافة سعر جملة</button>
+          </div>
+        </div>
+
+        <button id="addProductBtn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة منتج</button>
+      </div>
+      <h3 style="margin:10px 0"><i class="fas fa-boxes"></i> جميع المنتجات</h3>
+      <div class="total-count-badge"><i class="fas fa-boxes"></i> إجمالي المنتجات: <strong id="totalProductsCount">0</strong></div>
+      <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchProducts" placeholder="ابحث..."><button class="clear-search" id="clearSearchProducts" onclick="clearSearch('searchProducts','clearSearchProducts')"><i class="fas fa-times"></i></button></div>
+      <div id="productsList" class="items-list"></div>
+      <div class="load-more-admin" id="adminLoadMoreContainer">
+        <button class="btn" id="adminLoadMoreBtn"><i class="fas fa-chevron-down"></i> تحميل المزيد (20 منتج)</button>
+      </div>
+    </div>
+
+    <div id="tabCategories" class="tab-content">
+      <div class="form-card">
+        <h3><i class="fas fa-plus-circle"></i> إضافة قسم</h3>
+        <div class="row-2"><input type="text" id="newCatName" placeholder="اسم القسم"><input type="number" id="newCatOrder" placeholder="الترتيب" value="1"></div>
+        <div class="file-upload-btn" onclick="document.getElementById('newCatImageFile').click()">اختر صورة</div><input type="file" id="newCatImageFile" accept="image/*" style="display:none"><div id="newCatFileName" style="font-size:0.7rem">📁 لم يتم اختيار ملف</div>
+        <button id="addCategoryBtn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة</button>
+      </div>
+      <div id="categoriesList" class="items-list"></div>
+    </div>
+
+    <div id="tabSubcategories" class="tab-content" style="display:none!important">
+      <div class="form-card">
+        <h3><i class="fas fa-plus-circle"></i> إضافة فئة</h3>
+        <div class="row-2"><input type="text" id="newSubcatName" placeholder="اسم الفئة"><select id="newSubcatCategory"><option value="">اختر القسم</option></select></div>
+        <div class="file-upload-btn" onclick="document.getElementById('newSubcatImageFile').click()">اختر صورة</div><input type="file" id="newSubcatImageFile" accept="image/*" style="display:none"><div id="newSubcatFileName" style="font-size:0.7rem">📁 لم يتم اختيار ملف</div>
+        <button id="addSubcategoryBtn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة</button>
+      </div>
+      <div id="subcategoriesList" class="items-list"></div>
+    </div>
+
+    <div id="tabCoupons" class="tab-content">
+      <div class="form-card">
+        <h3><i class="fas fa-plus-circle"></i> إضافة كوبون</h3>
+        <div class="row-2"><input type="text" id="couponCode" placeholder="الكود"><select id="couponType"><option value="percentage">نسبة مئوية</option><option value="fixed">قيمة ثابتة</option></select></div>
+        <div class="row-2"><input type="text" id="couponValue" placeholder="القيمة"><input type="text" id="couponMinAmount" placeholder="الحد الأدنى"></div>
+        <div class="row-2"><input type="date" id="couponExpiry"><input type="number" id="couponUsageLimit" placeholder="عدد الاستخدامات" value="1"></div>
+        <button id="addCouponBtn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة</button>
+      </div>
+      <div id="couponsList" class="items-list"></div>
+    </div>
+
+    <div id="tabAds" class="tab-content">
+      <div class="form-card">
+        <h3><i class="fas fa-plus-circle"></i> إضافة إعلان</h3>
+        <div class="file-upload-btn" onclick="document.getElementById('newAdImageFile').click()">اختر صورة</div><input type="file" id="newAdImageFile" accept="image/*" style="display:none"><div id="newAdFileName" style="font-size:0.7rem">📁 لم يتم اختيار ملف</div>
+        <input type="text" id="newAdText" placeholder="نص الإعلان"><button id="addAdBtn" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة</button>
+      </div>
+      <div id="adsList" class="items-list"></div>
+    </div>
+
+    <div id="tabSettings" class="tab-content">
+      <div class="form-card">
+        <h3><i class="fas fa-qrcode"></i> إعدادات الباركود</h3>
+        <div class="file-upload-btn" onclick="document.getElementById('paymentBarcodeFile').click()">اختر صورة الباركود</div>
+        <input type="file" id="paymentBarcodeFile" accept="image/*" style="display:none" />
+        <div id="paymentBarcodeFileName" style="font-size:0.7rem">📁 لم يتم اختيار ملف</div>
+        <input type="text" id="paymentBarcodeTitle" placeholder="العنوان" value="الدفع عبر الباركود">
+        <textarea id="paymentBarcodeDesc" rows="2" placeholder="الوصف">امسح الباركود لإتمام الدفع</textarea>
+        <select id="paymentBarcodeEnabled"><option value="true">مفعل</option><option value="false">معطل</option></select>
+        <button id="savePaymentBarcodeBtn" class="btn btn-primary"><i class="fas fa-save"></i> حفظ</button>
+      </div>
+    </div>
+
+    <div class="footer-designer-credit nexora-footer-credit" aria-label="حقوق التصميم والنشر">
+  <span>Designed &amp; Developed by <a class="nexora-credit-link" href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer">NEXORA</a></span>
+  <span class="nexora-copy">© 2026 NEXORA. All Rights Reserved.</span>
+</div>
+  </div>
+
+  <div id="adminToast" class="toast"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="../assets/js/taqwa-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* Admin dark-only overrides — تُطبق فقط عند الوضع الليلي */
+html[data-theme="dark"] html,html[data-theme="dark"] body,
+html[data-theme="dark"] .admin-content,html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .content,html[data-theme="dark"] .dashboard-content{
+  background:#0c0b0a!important;color:#f6f5f4!important;
+}
+html[data-theme="dark"] .sidebar,html[data-theme="dark"] .admin-sidebar,
+html[data-theme="dark"] .topbar,html[data-theme="dark"] .admin-header,
+html[data-theme="dark"] .admin-navbar,html[data-theme="dark"] .sidebar-brand{
+  background:#191714!important;color:#f6f5f4!important;border-color:#35322c!important;
+}
+html[data-theme="dark"] .chart-card,html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .card,html[data-theme="dark"] .panel,html[data-theme="dark"] .widget,
+html[data-theme="dark"] .table-container,html[data-theme="dark"] .table-responsive,
+html[data-theme="dark"] .form-container,html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .content-card,html[data-theme="dark"] .dashboard-card{
+  background:#191714!important;color:#f6f5f4!important;border-color:#35322c!important;
+}
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{
+  background:#23211c!important;color:#f6f5f4!important;border-color:#35322c!important;
+}
+html[data-theme="dark"] th,html[data-theme="dark"] td,html[data-theme="dark"] tr,html[data-theme="dark"] table{
+  background-color:transparent!important;color:#f6f5f4!important;border-color:#35322c!important;
+}
+.logo img,.sidebar-brand img,.login-brand-logo{object-fit:contain;max-width:100%;height:auto}

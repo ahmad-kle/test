@@ -1,164 +1,376 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#9f7928">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script>window.__kdBip=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__kdBip=e;try{dispatchEvent(new Event('kd-bip'))}catch(_){}});</script>
+    <link rel="apple-touch-icon" href="assets/img/kurdi-apple-touch-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="متجر الكردي للزينة">
     <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title> متجر الكردي للزينة | قطع دراجتك بثقة </title>
+    <link rel="icon" type="image/png" href="assets/img/kurdi-favicon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/img/kurdi-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400..700&display=swap" rel="stylesheet">
-    <title>K2skiing</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://api.cloudinary.com">
+    <link rel="stylesheet" href="assets/css/style.css?v=taqwa-categories-fix-20261022">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/taqwa-unified-theme.css?v=6">
+    <link rel="stylesheet" href="assets/css/taqwa-v7.css?v=7">
+    <link rel="stylesheet" href="assets/css/kurdi-theme.css?v=1">
+    <meta name="description" content="متجر الكردي للزينة - وجهتك الأولى لقطع وإكسسوارات الدراجات النارية">
+    <meta name="keywords" content="متجر الكردي للزينة, قطع دراجات نارية, إكسسوارات, صيانة">
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-G78ZH0C64Q');</script>
+    <style>
+        /* إخفاء خيار التغليف والدفع عند الاستلام */
+        .gift-wrap-group, #orderGiftWrap, .gift-wrap-option { display: none !important; }
+        #productsSection {
+    scroll-margin-top: 90px;
+}
+    </style>
+    <script src="assets/js/taqwa-theme.js" defer></script>
+    <script src="assets/js/kurdi-motion.js?v=1" defer></script>
+<style>
+.home-load-more-wrap .btn { background:#9f7928;color:#fff;border:0;cursor:pointer; }
+.home-load-more-wrap .btn:hover { background:#cd9e37; }
+</style>
+<style>
+.nexora-footer-contact {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:9px 18px;
+  padding:0 12px 16px;
+  margin:0 auto;
+  direction:rtl;
+  text-align:center;
+  background:var(--bg-white,#fff);
+  font-size:.82rem;
+}
+.nexora-footer-contact a {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#9f7928;
+  text-decoration:none;
+  font-weight:600;
+  white-space:nowrap;
+}
+.nexora-footer-contact a:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-contact svg { width:16px;height:16px;flex:0 0 16px; }
+@media(max-width:480px) {
+  .nexora-footer-contact { gap:8px 13px; font-size:.76rem; }
+}
+</style>
+<style>.nexora-splash-credit strong{color:#9f7928}.nexora-splash-credit{direction:ltr}</style>
+<style>
+.nexora-footer-credit {
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  gap:8px 14px; padding:14px 12px; margin:0 auto; text-align:center;
+  direction:ltr; color:var(--text-medium,#55482b); font-size:.82rem;
+  border-top:1px solid var(--border,#f2e5c9); background:var(--bg-white,#fff);
+}
+.nexora-footer-credit .nexora-credit-link { color:#9f7928; text-decoration:none; font-weight:800; }
+.nexora-footer-credit .nexora-credit-link:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-credit .nexora-copy { color:var(--text-medium,#55482b); }
+</style>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <div class="left-div">
-                <img src="./assets/images/Logo.svg" alt="logo">
-                <ul>
-                    <li><a class="active" href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Pakages</a></li>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="tq-splash-gauge"><img src="assets/img/kurdi-badge.png" alt="متجر الكردي للزينة" width="150" height="146"></div>
+            <p class="splash-subtitle">زينة • أداء • ثقة</p>
+            <p class="splash-welcome">أهلاً بك في متجر الكردي للزينة</p>
+            <div class="tq-revbar" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i></div>
+            <p class="splash-loading-text">جاري تحميل المتجر...</p>
+            <div class="splash-credit nexora-splash-credit" aria-label="حقوق التصميم والنشر"><span>Designed &amp; Developed by <strong>NEXORA</strong></span><span>© 2026 NEXORA. All Rights Reserved.</span></div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content container">
+            <a href="index.html" class="logo">
+                <img src="assets/img/kurdi-logo.png" alt="متجر الكردي للزينة" class="logo-img" height="58">
+            </a>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن قطعة أو اسم دراجة...">
+                <button type="button" class="clear-search-btn" id="clearSearchBtn" title="مسح البحث"><i class="fas fa-times"></i></button>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <a href="track-order.html" class="track-btn" id="trackBtnHeader"><i class="fas fa-truck"></i> تتبع</a>
+                <button type="button" class="install-app-header" id="installAppBtnHeader" aria-label="تثبيت التطبيق"><i class="fas fa-mobile-screen-button install-app-icon"></i><span>تثبيت التطبيق</span></button>
+                <button class="action-btn" id="cartBtn"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></button>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list" id="navList">
+                    <li class="nav-item active" data-category="all"><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
                 </ul>
             </div>
-            <div class="rihgt-div">
-                <button class="btn primary-btn">Get Started</button>
-            </div>
         </nav>
-        <div class="hero">
-            <h1>Outstanding Range of <span>activities</span> to enjoy</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quae! Magnam praesentium earum alias
-                voluptatum quasi ipsam, nihil molestiae.</p>
-            <div class="button">
-                <button class="btn primary-btn">Explore Now</button>
-                <button class="btn second-btn">Select Packages</button>
-            </div>
-        </div>
     </header>
 
-    <main>
-        <section class="Partners">
-            <h1>Our <span>Partners</span></h1>
-            <div class="container">
-                <img src="./assets/images/C-logo1.svg" alt="logo1">
-                <img src="./assets/images/C-logo2.svg" alt="logo2">
-                <img src="./assets/images/C-logo3.svg" alt="logo3">
-                <img src="./assets/images/C-logo4.svg" alt="logo4">
-                <img src="./assets/images/C-logo5.svg" alt="logo5">
+    <section class="hero-section" aria-label="متجر الكردي للزينة للدراجات النارية">
+        <div class="hero-slider" id="heroSlider">
+          <div class="hero-slide active taqwa-hero-slide">
+            <div class="hero-slide-overlay"></div>
+            <div class="taqwa-hero-copy">
+              <span class="taqwa-eyebrow"><i class="fas fa-motorcycle"></i> عالم الدراجات يبدأ من هنا</span>
+              <h2>كل قطعة تصنع <em>فرقاً</em></h2>
+              <p>قطع غيار وإكسسوارات للدراجات النارية، اختيارات عملية لعشاق الأداء والطريق.</p>
+              <a href="#productsSection" class="taqwa-hero-cta">اكتشف القطع <i class="fas fa-arrow-left"></i></a>
             </div>
-        </section>
-        <section class="ski-sno">
-            <h1>Ski & <span>Snowboard</span> Guides</h1>
-            <div class="cards">
-                <div class="card1">
-                    <img src="./assets/images/n1.png" alt="">
-                    <h2>Local Knowledge</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  Dolorum iste asperiores tempora architecto porro quibusdam ut,  sit fugit quis at rerum, voluptatem ipsum! Laborum  aspernatur voluptatem accusantium sunt tenetur eaque.</p>
-                    <a href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                <div class="card2">
-                    <img src="./assets/images/n2.png" alt="">
-                    <h2>Endless Terain</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum iste asperiores tempora architecto porro quibusdam ut, sit fugit quis at rerum, voluptatem ipsum! Laborum aspernatur voluptatem accusantium sunt tenetur eaque.</p>
-                    <a href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                <div class="card3">
-                    <img src="./assets/images/n3.png" alt="">
-                    <h2>Fully Customizable Trips</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum iste asperiores tempora architecto porro quibusdam ut, sit fugit quis at rerum, voluptatem ipsum! Laborum aspernatur voluptatem accusantium sunt tenetur eaque.</p>
-                    <a href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <section class="push">
-            <h1>Push your Plane to next level</h1>
-            <p>End-to-end payments and financial mangement in a single solution. Meet the right Platform to help realize</p>
-            <div class="btn1">
-                            <button class="btn second-btn">Explore Now</button>
-
-            </div>
-        </section>
-        
-        <section class="newsFeed">
-            <h1>Our <span>Newsfeed</span></h1>
-            <div class="test">
-            
-
-                <div class="card-two">
-                    <div class="card">
-                        <img src="./assets/images/n1.png" alt="">
-                        <pre>08-11-2021</pre>
-                        <h2>Belieing neglected so so allowance existence departure.</h2>
-                        <p>Blessing welcomed ladyshio she met humoured sir breeding her. Six curiosity day assurance bed necessary.</p>
-                    </div>
-                    <div class="card">
-                        <img src="./assets/images/n2.png" alt="">
-                        <pre>08-11-2021</pre>
-                        <h2>In design active temper be uneasy. thirty for remove.</h2>
-                        <p>Yet preference connection unpleasant yet melancholy but end appearance.</p>
-                    </div>
-                </div>
-                <div class="card-four">
-                    <div class="card">
-                        <img src="./assets/images/n1.png" alt="">
-                       <div class="cont">
-                         <pre>08-11-2021</pre>
-                        <h3>Partiality on or continuing in particular prociples.</h3>
-                       </div>
-                    </div>
-                    <hr>
-                    <div class="card">
-                        <img src="./assets/images/n2.png" alt="">
-                        <div class="cont">
-                            <pre>08-11-2021</pre>
-                        <h3>Do belieing oh disposing to supported allowance we.</h3>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card">
-                        <img src="./assets/images/n1.png" alt="">
-                       <div class="cont">
-                         <pre>08-11-2021</pre>
-                        <h3>Village did removed enjoyed explain nor ham saw.</h3>
-                       </div>
-                    </div>
-                    <hr>
-                    <div class="card">
-                        <img src="./assets/images/n2.png" alt="">
-                        <div class="cont">
-                            <pre>08-11-2021</pre>
-                        <h3>Securing as informed declared or margaret.</h3>
-                        </div>
-                        
-                    </div>
-                    <hr>
-                </div>
-            </div>
-        </section>
-     <section class="form">
-        <div class="cont">
-            <p class="p1">WHY CHOOSE US</p>
-            <h1>Track your <span>Pakage</span> on the best way possible </h1>
-            <p class="p2">Mean if the beel Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                 Unde natus illo ex non enim eos ipsum nulla modi est!</p>
+            <div class="tq-machine kurdi-wheel" role="img" aria-label="عجلة دراجة تدور مع التمرير"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="94" fill="#6b5a3a"/><circle cx="100" cy="100" r="84" fill="#fff8e8" stroke="#cd9e37" stroke-width="5"/><g class="kw-spin" style="transform-origin:100px 100px"><g stroke="#9f7928" stroke-width="7" stroke-linecap="round"><path d="M100 100L178.0 100.0"/><path d="M100 100L124.1 174.2"/><path d="M100 100L36.9 145.8"/><path d="M100 100L36.9 54.2"/><path d="M100 100L124.1 25.8"/></g><circle cx="100" cy="100" r="52" fill="none" stroke="#e3d2a6" stroke-width="10"/><g fill="#fff8e8"><circle cx="141.8" cy="113.6" r="4.5"/><circle cx="125.9" cy="135.6" r="4.5"/><circle cx="100.0" cy="144.0" r="4.5"/><circle cx="74.1" cy="135.6" r="4.5"/><circle cx="58.2" cy="113.6" r="4.5"/><circle cx="58.2" cy="86.4" r="4.5"/><circle cx="74.1" cy="64.4" r="4.5"/><circle cx="100.0" cy="56.0" r="4.5"/><circle cx="125.9" cy="64.4" r="4.5"/><circle cx="141.8" cy="86.4" r="4.5"/></g><circle cx="100" cy="100" r="16" fill="#9f7928"/><circle cx="100" cy="100" r="6" fill="#fff8e8"/></g></svg><i class="kw-blur"></i><small>اضغط على العجلة</small></div>
+          </div>
         </div>
-        <form action="post">
-            <input type="email" placeholder="Email Address">
-            <input type="password" placeholder="password">
-            <button class="primary-btn btn">Explore Now</button>
+        <div class="hero-dots" id="heroDots"><span class="dot active"></span></div>
+    </section>
 
-        </form>
-        
-     </section>
+    <section class="taqwa-categories container" aria-label="استكشف فئات القطع">
+      <div class="taqwa-section-heading">
+        <div><span>اختياراتنا</span><h2>جهّز دراجتك <b>للطريق</b></h2></div>
+        <p>تصفح أقسامنا لاكتشاف ما يناسب دراجتك.</p>
+      </div>
+      <div class="tq-chain" aria-hidden="true"></div>
+      <div class="taqwa-category-grid" id="dynamicCategoriesGrid"></div>
+    </section>
 
-    </main>
+    <section class="products-section container" id="productsSection">
+        <div class="section-header">
+            <h2><i class="fas fa-gears"></i> قطع مختارة لعشاق الطريق</h2>
+            <div class="filter-tabs" id="filterTabs"></div>
+        </div>
+        <div class="tq-chain" aria-hidden="true"></div>
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="home-load-more-wrap" id="homeLoadMoreWrap" role="status" aria-live="polite" style="text-align:center;margin:28px 0 12px;display:none;color:var(--primary);font-weight:600;min-height:36px"><span id="homeLoadMoreBtn"><i class="fas fa-spinner fa-spin"></i> يتم تحميل المزيد من المنتجات...</span></div>
+    </section>
 
-    <footer>
-        <p>Copyright <i class="fa-solid fa-registered"></i>Ahmad Kllawe 2025. All Rigths Reserved.</p>
+    <div class="tq-road" aria-hidden="true"></div>
+
+    <section class="features-bar">
+        <div class="container features-grid">
+            <div class="feature-item"><i class="fas fa-screwdriver-wrench"></i><h4>قطع مختارة بعناية</h4><p>خيارات تناسب احتياجاتك</p></div>
+            <div class="feature-item"><i class="fas fa-shield-halved"></i><h4>تجربة شراء سهلة</h4><p>خطوات واضحة وبسيطة</p></div>
+            <div class="feature-item"><i class="fas fa-headset"></i><h4>دعم 24/7</h4><p>فريق خدمة متميز</p></div>
+            <div class="feature-item"><i class="fas fa-gears"></i><h4>قطع غيار متنوعة</h4><p>خيارات متعددة لاحتياجات دراجتك</p></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo"><img src="assets/img/kurdi-badge.png" alt="متجر الكردي للزينة" class="footer-logo-img" width="56" height="54"><h3>متجر الكردي للزينة</h3></div>
+                <p>وجهتك لقطع وإكسسوارات الدراجات النارية. جودة موثوقة، خيارات متنوعة، وتجربة شراء سهلة.</p>
+                <div class="social-links" aria-label="حسابات متجر الكردي للزينة">
+                    <a href="https://wa.me/963956351837" target="_blank" rel="noopener" title="واتساب متجر الكردي للزينة"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/altaqwaa_7?cplk=Y3p5NDc5ODlqMncw" target="_blank" rel="noopener" title="إنستغرام متجر الكردي للزينة"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@altaqwaa_7?_r=1&_t=ZG-9An8oWxO6u8" target="_blank" rel="noopener" title="تيك توك متجر الكردي للزينة"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/share/1JH1j35Rk4/?mibextid=wwXIfr" target="_blank" rel="noopener" title="فيسبوك متجر الكردي للزينة"><i class="fab fa-facebook"></i></a>
+                    <a href="https://maps.app.goo.gl/ndWQk8WaMDwFCVZ27?g_st=iwb" target="_blank" rel="noopener" title="عنوان المتجر"><i class="fas fa-map-marker-alt"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html?filter=products">منتجاتنا</a></li>
+                    <li><a href="index.html?filter=offers">العروض</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>تواصل معنا</h4>
+                <ul class="contact-info">
+                    <li><a href="https://wa.me/963956351837" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +963 956 351 837 — واتساب الطلبات</a></li>
+                    <li><a href="tel:+963956351837"><i class="fas fa-phone"></i> +963 956 351 837</a></li>
+                    <li><a href="https://maps.app.goo.gl/ndWQk8WaMDwFCVZ27?g_st=iwb" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> الدانا، طريق دير حسان بعد مفرق 22</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
-</body>
+    <div class="footer-designer-credit nexora-footer-credit" aria-label="حقوق التصميم والنشر">
+        <span>Designed &amp; Developed by <a class="nexora-credit-link" href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer">NEXORA</a></span>
+        <span class="nexora-copy">© 2026 NEXORA. All Rights Reserved.</span>
+    </div>
+    <div class="nexora-footer-contact" aria-label="تواصل مع NEXORA">
+  <a href="https://wa.me/963938180405" target="_blank" rel="noopener noreferrer" aria-label="واتساب NEXORA">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A11.8 11.8 0 0 0 1.5 18.1L0 24l6-1.6A12 12 0 0 0 24 12a11.9 11.9 0 0 0-4-8.1ZM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.5.9.9-3.4-.2-.4A9 9 0 1 1 12 21Zm5-6.7c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2-.8.9-1 1.1-.4.2-.7.1a7.4 7.4 0 0 1-2.2-1.4 8.2 8.2 0 0 1-1.5-1.9c-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6-.7-1.7-1-2.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4a11.8 11.8 0 0 0 4.6 4c.6.3 1.1.5 1.5.6.6.2 1.2.2 1.7.1.5-.1 1.7-.7 1.9-1.4s.2-1.3.2-1.4-.2-.2-.5-.4Z"/></svg>
+    واتساب
+  </a>
+  <a href="https://www.instagram.com/nexora.d09?psln=MnA1eXZib2V6c3J6" target="_blank" rel="noopener noreferrer" aria-label="إنستغرام NEXORA">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+    إنستغرام
+  </a>
+  <a href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer" aria-label="موقع NEXORA">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0-18"/></svg>
+    موقع NEXORA
+  </a>
+</div>
 
+
+    <div class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item active"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+        <button type="button" class="bottom-nav-item install-app-nav" id="installAppBtn" aria-label="تثبيت التطبيق"><i class="fas fa-mobile-screen-button install-app-icon"></i><span>تثبيت التطبيق</span></button>
+        <a href="track-order.html" class="bottom-nav-item" id="bottomTrackBtn"><i class="fas fa-truck"></i><span>تتبع</span></a>
+        <a href="#" class="bottom-nav-item" id="bottomCartBtn"><i class="fas fa-shopping-bag"></i><span>السلة</span></a>
+        <a href="#" class="bottom-nav-item" id="bottomContactBtn"><i class="fas fa-headset"></i><span>تواصل معنا</span></a>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header"><h3><i class="fas fa-shopping-bag"></i> سلة المشتريات</h3><button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button></div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-empty" id="cartEmpty"><i class="fas fa-shopping-basket"></i><p>سلة المشتريات فارغة</p><span>أضف منتجات إلى السلة للبدء.</span></div>
+        <div class="cart-footer" id="cartFooter"><div class="cart-total"><span>المجموع:</span><span class="total-price" id="totalPrice">0 $</span></div><button class="checkout-btn" id="checkoutBtn"><i class="fas fa-check-circle"></i> تأكيد الطلب</button></div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="order-modal" id="orderModal">
+        <div class="modal-header"><h3><i class="fas fa-clipboard-list"></i> تفاصيل الطلب</h3><button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <form id="orderForm">
+                <div class="form-group"><label><i class="fas fa-user"></i> الاسم الكامل</label><input type="text" id="fullName" placeholder="أدخل الاسم الكامل" required></div>
+                <div class="form-group"><label><i class="fas fa-phone"></i> رقم الهاتف</label><input type="tel" id="phone" placeholder="أدخل رقم الهاتف" required></div>
+                <div class="form-group"><label><i class="fas fa-map-marker-alt"></i> المدينة</label>
+                    <select id="city" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="دمشق">دمشق</option><option value="حلب">حلب</option><option value="حمص">حمص</option><option value="اللاذقية">اللاذقية</option>
+                        <option value="حماة">حماة</option><option value="طرطوس">طرطوس</option><option value="دير الزور">دير الزور</option><option value="الحسكة">الحسكة</option>
+                        <option value="الرقة">الرقة</option><option value="إدلب">إدلب</option><option value="درعا">درعا</option><option value="السويداء">السويداء</option>
+                        <option value="القنيطرة">القنيطرة</option><option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group"><label><i class="fas fa-home"></i> العنوان التفصيلي</label><textarea id="address" rows="3" placeholder="أدخل العنوان بالتفصيل" required></textarea></div>
+                <div class="form-group"><label><i class="fas fa-sticky-note"></i> ملاحظات (اختياري)</label><textarea id="notes" rows="2" placeholder="أي ملاحظات خاصة بالطلب..."></textarea></div>
+                <div class="order-summary">
+                    <h4><i class="fas fa-receipt"></i> ملخص الطلب</h4>
+                    <div class="summary-row"><span>عدد المنتجات:</span><span id="orderItemCount">0</span></div>
+                    <div class="summary-row"><span>المجموع الفرعي:</span><span id="orderSubtotal">0 $</span></div>
+                    <div class="summary-row"><span>التوصيل:</span><span id="shippingCost">مدفوع (يتم حسابه عند التوصيل)</span></div>
+                    <div class="summary-row total"><span>الإجمالي:</span><span id="orderTotal">0 $</span></div>
+                </div>
+                <div class="payment-note"><i class="fas fa-info-circle"></i><p><strong>ملاحظة:</strong> بعد تأكيد الطلب، ستنتقل لخطوة الدفع عبر شام كاش لإرفاق وصل التحويل.</p></div>
+                <button type="submit" class="submit-order-btn"><i class="fas fa-arrow-left"></i> متابعة للدفع</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>تم إرسال طلبك بنجاح! 🎉</h3>
+            <p>سنقوم بالتواصل معك قريباً لتأكيد الطلب وإرسال تفاصيل الدفع.</p>
+            <div class="tracking-code-highlight">
+                <div class="label">🔑 رمز تتبع طلبك</div>
+                <div><span class="code" id="orderTrackingCode">TAQ-XXXXXX</span><button class="copy-btn" onclick="copyTrackingCode()" title="نسخ الرمز"><i class="fas fa-copy"></i></button></div>
+                <div style="font-size:0.7rem; color:#aea89c; margin-top:4px">احتفظ بهذا الرمز لتتبع طلبك</div>
+            </div>
+            <div class="success-details">
+                <p><i class="fas fa-clock"></i> وقت الطلب: <span id="orderTime"></span></p>
+                <p><i class="fas fa-phone"></i> سنتواصل معك على: <span id="orderPhone"></span></p>
+            </div>
+            <button class="success-btn" id="successBtn"><i class="fas fa-shopping-bag"></i> مواصلة التسوق</button>
+            <a href="track-order.html" class="success-track-btn" id="successTrackBtn"><i class="fas fa-truck"></i> تتبع طلبك</a>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage">تمت الإضافة إلى السلة!</span></div>
+    <div class="quick-view-modal" id="quickViewModal"><div class="quick-view-content"><button class="close-quick-view" id="closeQuickView"><i class="fas fa-times"></i></button><div class="quick-view-body" id="quickViewBody"></div></div></div>
+
+    <div class="modal-overlay" id="contactModalOverlay"></div>
+    <div class="order-modal" id="contactModal">
+        <div class="modal-header"><h3><i class="fas fa-headset"></i> تواصل معنا</h3><button class="close-modal" id="closeContactModal"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body" style="text-align: center"><div style="display: flex; flex-direction: column; gap: 20px; padding: 20px"><a href="https://wa.me/963956351837" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: #25D366; color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fab fa-whatsapp" style="font-size: 1.5rem"></i> واتساب</a><a href="#" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(45deg, #f09433, #d62976, #962fbf); color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fab fa-instagram" style="font-size: 1.5rem"></i> إنستغرام</a></div></div>
+    </div>
+
+    <div class="invoice-preview-modal" id="invoicePreviewModal">
+        <div class="invoice-preview-content" id="invoicePreviewContent"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="assets/js/taqwa-config.js"></script>
+    <script src="assets/js/scriptv1.js"></script>
+    <script src="assets/js/search-overlay-fix.js"></script>
+
+    <script>
+    // دالة نسخ رمز التتبع
+    function copyTrackingCode() {
+        const el = document.getElementById('orderTrackingCode');
+        if (!el) return;
+        const code = el.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(() => showToast('✅ تم نسخ رمز التتبع!')).catch(() => fallbackCopyCode(code));
+        } else fallbackCopyCode(code);
+    }
+    function fallbackCopyCode(code) {
+        const ta = document.createElement('textarea'); ta.value = code;
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showToast('✅ تم نسخ رمز التتبع!'); }
+        catch { showToast('تعذر النسخ', true); }
+        document.body.removeChild(ta);
+    }
+
+    // افتح المنتج تلقائياً إذا كان هناك بارامتر product في الرابط
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('product');
+        if (productId) {
+            const check = setInterval(() => {
+                if (typeof products !== 'undefined' && products.length > 0) {
+                    clearInterval(check);
+                    const product = products.find(p => p.id === productId);
+                    if (product) setTimeout(() => openProductOptions(productId, null), 600);
+                    else showToast('⚠️ المنتج غير موجود', true);
+                }
+            }, 200);
+            setTimeout(() => clearInterval(check), 5000);
+        }
+    })();
+
+    // إصلاح واتساب: تضمين حالة الدفع في الرسالة
+    window.addEventListener('load', function() {
+        const _orig = window.taqwaBuildWhatsAppUrl;
+        window.taqwaBuildWhatsAppUrl = function(order) {
+            if (!order || !order.customer) return _orig ? _orig(order) : '';
+            const c = window.TAQWA_CONFIG || {};
+            const tryPaths = [c.whatsappNumber, c.whatsapp, c.phone, c.storePhone, c.supportPhone, c.contact && c.contact.whatsapp, c.contact && c.contact.phone, c.store && c.store.whatsapp, c.store && c.store.phone, c.support && c.support.whatsapp, c.support && c.support.phone];
+            let phone = '';
+            for (const v of tryPaths) { if (v) { const d = String(v).replace(/\D/g, ''); if (d.length >= 8) { phone = d; break; } } }
+            if (!phone) return _orig ? _orig(order) : '';
+            const isPaid = !!(order.paymentReceipt && (order.paymentReceipt.data || order.paymentReceipt.attached || typeof order.paymentReceipt === 'string'));
+            const paymentLine = isPaid ? '💳 *حالة الدفع:* ✅ تم الدفع عبر شام كاش (تم إرفاق وصل التحويل)' : '💳 *حالة الدفع:* ⏳ لم يتم الدفع بعد (لم يتم إرفاق وصل)';
+            let msg = '🛍️ *طلب جديد من متجر الكردي للزينة*\n━━━━━━━━━━━━━━━━\n';
+            msg += '👤 الاسم: ' + order.customer.fullName + '\n📞 الهاتف: ' + order.customer.phone + '\n📍 المدينة: ' + order.customer.city + '\n🏠 العنوان: ' + order.customer.address + '\n';
+            if (order.customer.notes) msg += '📝 ملاحظات: ' + order.customer.notes + '\n';
+            msg += '\n🔑 *رمز التتبع:* ' + (order.trackingCode || '—') + '\n\n📦 *المنتجات:*\n';
+            (order.items || []).forEach(it => {
+                let line = '• ' + it.name;
+                if (it.selectedSize) line += ' [مقاس: ' + it.selectedSize + ']';
+                if (it.selectedColor) line += ' [لون: ' + it.selectedColor + ']';
+                line += ' × ' + it.qty + ' = ' + (parseFloat(it.price) * it.qty).toFixed(2) + '$\n';
+                msg += line;
+            });
+            msg += '\n💰 المجموع الفرعي: ' + parseFloat(order.subtotal || 0).toFixed(2) + '$\n';
+            if (order.discount > 0) msg += '🎫 الخصم: -' + parseFloat(order.discount).toFixed(2) + '$\n';
+            msg += '💵 *الإجمالي: ' + parseFloat(order.total || 0).toFixed(2) + '$*\n\n' + paymentLine + '\n\n⏰ ' + new Date(order.timestamp || Date.now()).toLocaleString('ar-EG');
+            return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+        };
+    });
+    </script>
+    <script src="assets/js/pwa-install.js" defer></script>
+</body>
 </html>

@@ -1,0 +1,218 @@
+/* ============================================================
+   متجر الكردي للزينة — v7
+   1) الوضع النهاري: أزرق فاتح + أبيض، خط غامق، لمسات حمراء قليلة
+   2) حركات وتأثيرات خاصة بقطع المحركات (ترس، عدّاد RPM، سلسلة، طريق)
+   ============================================================ */
+
+/* ---------- ألوان الرسوم (الوضعين) ---------- */
+html[data-theme="light"]{
+  --mx-gear:#f7efdd; --mx-gear-line:#8c6b23; --mx-dial:#ffffff; --mx-tick:#292314;
+  --mx-red:#9f7928; --mx-chain:#debf7b; --mx-road:rgba(159,121,40,.35);
+}
+
+/* ============================================================
+   1) الوضع النهاري
+   ============================================================ */
+html[data-theme="light"]{
+  --tq-bg:#fdfbf6; --tq-bg2:#faf4e9; --tq-panel:#ffffff; --tq-panel2:#fcf8f1;
+  --tq-text:#292314; --tq-muted:#6c5d3e; --tq-border:#f2e5c9;
+  --tq-primary:#9f7928; --tq-primary2:#cd9e37; --tq-accent:#9f7928;
+  --tq-primary-soft:rgba(159,121,40,.09); --tq-shadow:0 10px 28px rgba(124,95,31,.10); --tq-glow:rgba(205,158,55,.26);
+  --text-dark:#292314; --text-medium:#55482b; --text-light:#6c5d3e;
+  --primary:#9f7928; --primary-light:#cd9e37; --primary-dark:#7c5f1f;
+  --bg-light:#fdfbf6; --bg-lighter:#faf4e9; --bg-white:#ffffff; --border:#f2e5c9;
+  --gradient-primary:linear-gradient(135deg,#9f7928 0%,#cd9e37 100%);
+}
+html[data-theme="light"],
+html[data-theme="light"] body{background:#fdfbf6!important;color:#292314!important}
+html[data-theme="light"] body{background-image:linear-gradient(180deg,#faf5eb 0,#fdfbf8 420px,#fdfbf6 100%)!important}
+html[data-theme="light"] body::before{
+  background:radial-gradient(ellipse at 85% 6%,rgba(205,158,55,.14),transparent 40%),
+             radial-gradient(ellipse at 6% 72%,rgba(159,121,40,.05),transparent 32%)!important}
+html[data-theme="light"] ::selection{background:#f2e5c9;color:#292314}
+
+/* الشاشة الافتتاحية */
+html[data-theme="light"] .splash-screen{background:radial-gradient(ellipse at 50% 30%,#fff 0%,#faf6ed 55%,#f5ebd5 100%)!important;color:#292314!important}
+html[data-theme="light"] .splash-title{color:#292314!important}
+html[data-theme="light"] .splash-subtitle,html[data-theme="light"] .splash-loading-text,html[data-theme="light"] .splash-credit{color:#6c5d3e!important}
+html[data-theme="light"] .splash-welcome{color:#9f7928!important}
+html[data-theme="light"] .splash-credit strong{color:#9f7928!important}
+
+/* الهيدر */
+html[data-theme="light"] .main-header{background:rgba(255,255,255,.94)!important;border-bottom:1px solid #f2e5c9!important;box-shadow:0 6px 24px rgba(124,95,31,.08)!important;color:#292314!important}
+html[data-theme="light"] .logo-img,html[data-theme="light"] .footer-logo-img{background:transparent!important;box-shadow:0 5px 14px rgba(75,62,35,.28)!important;border-radius:16px}
+html[data-theme="light"] .logo-text h1,html[data-theme="light"] .logo-text h1 a{color:#292314!important}
+html[data-theme="light"] .logo-text span{color:#9f7928!important}
+html[data-theme="light"] .search-box{background:#fff!important;border:1px solid #eeddb9!important;box-shadow:0 4px 14px rgba(124,95,31,.07)!important}
+html[data-theme="light"] .search-box input{background:transparent!important;color:#292314!important}
+html[data-theme="light"] .search-box input::placeholder{color:#837453!important}
+html[data-theme="light"] .clear-search-btn{background:transparent!important;color:#6c5d3e!important}
+html[data-theme="light"] .action-btn{background:#fff!important;color:#292314!important;border:1px solid #eeddb9!important}
+html[data-theme="light"] .header-actions .track-btn,html[data-theme="light"] .track-btn{background:#fff!important;color:#7c5f1f!important;border:1.5px solid #9f7928!important}
+html[data-theme="light"] .cart-count{background:#9f7928!important;color:#fff!important}
+html[data-theme="light"] .main-nav{background:#faf6ed!important;border-top:1px solid #f2e5c9!important}
+html[data-theme="light"] .nav-item a,html[data-theme="light"] .nav-list a{color:#4b3f24!important}
+html[data-theme="light"] .nav-item.active a,html[data-theme="light"] .nav-item a:hover{background:#fff!important;color:#9f7928!important;box-shadow:inset 0 -3px 0 #9f7928}
+
+/* البطل */
+html[data-theme="light"] .hero-section{background:transparent!important}
+html[data-theme="light"] .hero-slider{background:#fff!important;border:1px solid #f2e5c9!important;box-shadow:0 20px 50px rgba(124,95,31,.14)!important}
+html[data-theme="light"] .hero-slide-image{filter:brightness(1.05) saturate(.85)!important}
+html[data-theme="light"] .hero-slide-overlay{background:linear-gradient(270deg,rgba(255,255,255,.97) 0%,rgba(253,251,246,.9) 40%,rgba(250,244,233,.3) 100%)!important}
+html[data-theme="light"] .taqwa-hero-copy,html[data-theme="light"] .taqwa-hero-copy h2{color:#292314!important}
+html[data-theme="light"] .taqwa-hero-copy h2 em{color:#9f7928!important}
+html[data-theme="light"] .taqwa-hero-copy p{color:#55482b!important}
+html[data-theme="light"] .taqwa-eyebrow{background:#fff!important;border:1px solid #eeddb9!important;color:#9f7928!important}
+html[data-theme="light"] .taqwa-hero-cta{background:linear-gradient(135deg,#cd9e37,#9f7928)!important;color:#fff!important}
+html[data-theme="light"] .hero-dots .dot{background:#eeddb9!important}
+html[data-theme="light"] .hero-dots .dot.active{background:#9f7928!important}
+
+/* الأقسام والبطاقات */
+html[data-theme="light"] .taqwa-section-heading span{color:#9f7928!important}
+html[data-theme="light"] .taqwa-section-heading h2,html[data-theme="light"] .section-header h2{color:#292314!important}
+html[data-theme="light"] .taqwa-section-heading h2 b{background:none!important;-webkit-text-fill-color:#9f7928!important;color:#9f7928!important}
+html[data-theme="light"] .taqwa-section-heading p{color:#6c5d3e!important}
+html[data-theme="light"] .section-header{border-bottom:0!important}
+html[data-theme="light"] .section-header h2 i{color:#9f7928!important}
+html[data-theme="light"] .taqwa-category-card{height:auto!important;display:flex;flex-direction:column;background:#fff!important;border:1px solid #f2e5c9!important;color:#292314!important}
+html[data-theme="light"] .taqwa-category-card img{position:relative!important;inset:auto!important;width:100%;height:190px!important;object-fit:cover;filter:none!important;background:linear-gradient(135deg,#f7efdd,#fdfbf6);color:#292314}
+html[data-theme="light"] .taqwa-category-card>div{position:static!important;padding:14px 16px 18px;text-align:right}
+html[data-theme="light"] .taqwa-category-card h3{color:#292314!important}
+html[data-theme="light"] .taqwa-category-card p{color:#6c5d3e!important}
+html[data-theme="light"] .taqwa-card-index{background:#fff;color:#7c5f1f!important;padding:4px 10px;border-radius:99px;top:12px!important;right:12px!important;box-shadow:0 3px 10px rgba(124,95,31,.18)}
+html[data-theme="light"] .taqwa-category-card>i{background:#9f7928!important;color:#fff!important;bottom:18px!important}
+html[data-theme="light"] .product-card,html[data-theme="light"] .cart-item{background:#fff!important;border:1px solid #f2e5c9!important;color:#292314!important;box-shadow:0 8px 22px rgba(124,95,31,.09)!important}
+html[data-theme="light"] .product-image{background:#fcf8f1!important}
+html[data-theme="light"] .product-info{background:#fff!important}
+html[data-theme="light"] .product-info h3,html[data-theme="light"] .product-name{color:#292314!important}
+html[data-theme="light"] .product-info p,html[data-theme="light"] .product-description{color:#6c5d3e!important}
+html[data-theme="light"] .product-price{color:#7c5f1f!important;font-weight:900}
+html[data-theme="light"] .filter-tab{background:#fff!important;color:#4b3f24!important;border:1px solid #eeddb9!important}
+html[data-theme="light"] .filter-tab.active,html[data-theme="light"] .filter-tab:hover{background:#9f7928!important;border-color:#9f7928!important;color:#fff!important}
+html[data-theme="light"] .taqwa-empty-products{background:linear-gradient(145deg,#fff,#faf6ed)!important;border:1.5px dashed #e5cd98!important;color:#55482b!important}
+html[data-theme="light"] .taqwa-empty-products h3{color:#292314!important}
+html[data-theme="light"] .taqwa-empty-products>i{color:#9f7928!important}
+html[data-theme="light"] .features-bar{background:#faf6ed!important;border-color:#f2e5c9!important}
+html[data-theme="light"] .feature-item{color:#292314!important;background:transparent!important}
+html[data-theme="light"] .feature-item i{color:#9f7928!important}
+html[data-theme="light"] .feature-item h4{color:#292314!important}
+html[data-theme="light"] .feature-item p{color:#6c5d3e!important}
+
+/* الفوتر */
+html[data-theme="light"] .main-footer{background:#faf4e9!important;color:#55482b!important;border-top:1px solid #f2e5c9!important}
+html[data-theme="light"] .main-footer h3,html[data-theme="light"] .main-footer h4{color:#292314!important}
+html[data-theme="light"] .main-footer p,html[data-theme="light"] .main-footer li,html[data-theme="light"] .main-footer a{color:#55482b!important}
+html[data-theme="light"] .main-footer a:hover{color:#7c5f1f!important}
+html[data-theme="light"] .social-links a{background:#fff!important;border:1px solid #eeddb9!important;color:#9f7928!important}
+html[data-theme="light"] .designer-credit{background:#f6edd9!important;border-top:1px solid #eeddb9!important}
+html[data-theme="light"] .designer-credit p,html[data-theme="light"] .designer-credit a,html[data-theme="light"] .designer-credit i{color:#4b3f24!important}
+
+/* التنقل السفلي والسلة والنوافذ */
+html[data-theme="light"] .bottom-nav{background:rgba(255,255,255,.97)!important;border-top:1px solid #f2e5c9!important;box-shadow:0 -8px 30px rgba(124,95,31,.12)!important}
+html[data-theme="light"] .bottom-nav-item{color:#6c5d3e!important;position:relative}
+html[data-theme="light"] .bottom-nav-item.active,html[data-theme="light"] .bottom-nav-item:hover{color:#9f7928!important}
+html[data-theme="light"] .cart-sidebar,html[data-theme="light"] .order-modal,html[data-theme="light"] .modal-content,
+html[data-theme="light"] .success-content,html[data-theme="light"] .contact-modal{background:#fff!important;color:#292314!important}
+html[data-theme="light"] .order-modal label,html[data-theme="light"] .order-modal h3,html[data-theme="light"] .order-modal h4,
+html[data-theme="light"] .cart-header h3,html[data-theme="light"] .cart-item-name,html[data-theme="light"] .success-content h3{color:#292314!important}
+html[data-theme="light"] .order-modal p,html[data-theme="light"] .order-modal span,html[data-theme="light"] .cart-empty p,html[data-theme="light"] .cart-empty span,html[data-theme="light"] .success-content p{color:#55482b!important}
+html[data-theme="light"] .order-summary,html[data-theme="light"] .payment-note,html[data-theme="light"] .gift-wrap-option{background:#fcf8f1!important;border-color:#f2e5c9!important;color:#292314!important}
+html[data-theme="light"] .total-price,html[data-theme="light"] .cart-item-price{color:#7c5f1f!important}
+html[data-theme="light"] input,html[data-theme="light"] select,html[data-theme="light"] textarea{background:#fff!important;color:#292314!important;border-color:#eeddb9!important}
+
+/* ============================================================
+   2) حركات المحركات
+   ============================================================ */
+@keyframes tqSpin{to{transform:rotate(360deg)}}
+@keyframes tqSpinBack{to{transform:rotate(-360deg)}}
+@keyframes tqSeg{0%,12%{opacity:.18}30%,60%{opacity:1}85%,100%{opacity:.18}}
+@keyframes tqNeedleRev{0%{transform:rotate(-135deg)}38%{transform:rotate(128deg)}52%{transform:rotate(104deg)}66%{transform:rotate(122deg)}100%{transform:rotate(70deg)}}
+@keyframes tqChain{to{background-position:-36px 0}}
+@keyframes tqRoad{to{background-position:-56px 0}}
+@keyframes tqIdle{0%,100%{transform:rotate(0)}30%{transform:rotate(.9deg)}65%{transform:rotate(-.8deg)}}
+@keyframes tqGearPop{from{transform:rotate(-200deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
+@keyframes tqCartPop{30%{transform:scale(1.5) rotate(-12deg)}60%{transform:scale(.92)}100%{transform:scale(1)}}
+@keyframes tqRide{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+
+/* شاشة البداية: عدّاد يرتفع وشريط RPM */
+.tq-splash-gauge{width:128px;height:128px;margin:0 auto 18px;filter:drop-shadow(0 12px 26px rgba(75,62,35,.35))}
+.tq-splash-gauge svg{width:100%;height:100%;display:block}
+.tq-splash-gauge .tq-logo-gear{animation:tqSpin 7s linear infinite}
+.tq-splash-gauge .tq-logo-needle{animation:tqNeedleRev 2.4s cubic-bezier(.3,.1,.2,1) both}
+.splash-loader{display:none!important}
+.tq-revbar{display:flex;justify-content:center;gap:4px;direction:ltr;margin:0 auto 22px}
+.tq-revbar i{width:14px;height:9px;border-radius:2px;background:#cd9e37;opacity:.18;animation:tqSeg 1.7s ease-in-out infinite;animation-delay:calc(var(--i)*.09s)}
+.tq-revbar i:nth-child(n+10){background:#9f7928}
+
+/* عدّاد الدورات في البطل */
+.tq-machine{position:absolute;z-index:3;left:5%;top:50%;transform:translateY(-50%);width:210px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tq-machine svg{width:100%;display:block;filter:drop-shadow(0 14px 22px rgba(124,95,31,.3))}
+.tq-machine .tq-gear{transform-origin:128px 128px;animation:tqSpin 22s linear infinite}
+.tq-machine .tq-needle{transform-origin:128px 128px;transform:rotate(calc(-135deg + var(--rev,.14)*270deg));transition:transform .45s cubic-bezier(.2,1.5,.4,1)}
+.tq-machine .tq-needle-jit{transform-origin:128px 128px;animation:tqIdle .22s ease-in-out infinite}
+.tq-machine small{display:block;text-align:center;margin-top:6px;font-weight:800;font-size:.72rem;color:var(--tq-muted,#a49e90)}
+.taqwa-hero-stamp{display:none!important}
+.taqwa-eyebrow i{animation:tqRide .28s ease-in-out infinite alternate}
+
+/* سلسلة الدراجة تحت عناوين الأقسام + خط الطريق قبل الفوتر */
+.tq-chain{height:14px;margin:0 0 22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='14'%3E%3Crect x='2' y='2' width='20' height='10' rx='5' fill='none' stroke='%23cd9e37' stroke-width='2.5'/%3E%3Crect x='18' y='4' width='16' height='6' rx='3' fill='none' stroke='%23cd9e37' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x;animation:tqChain 2.4s linear infinite;opacity:.85}
+.tq-road{height:3px;background:repeating-linear-gradient(90deg,var(--mx-road) 0 28px,transparent 28px 56px);animation:tqRoad 1s linear infinite}
+
+/* أيقونات المميزات تدور عند الظهور + شريط التمرير كعدّاد دورات */
+.feature-item.tq-visible i{animation:tqGearPop .9s cubic-bezier(.2,.8,.2,1) both}
+.feature-item:active i{transform:rotate(90deg);transition:transform .3s}
+.tq-progress{background:linear-gradient(270deg,#cd9e37 0,#9f7928 55%,#9f7928 100%)!important;background-size:100vw 100%!important;background-position:right!important}
+.cart-count.tq-pop,.cart-count.tq-pop+i{animation:tqCartPop .55s ease}
+.bottom-nav-item.active::before{content:"";position:absolute;top:-12px;width:30px;height:3px;border-radius:0 0 4px 4px;background:#9f7928}
+.bottom-nav-item:active i{transform:translateY(-3px) scale(1.18)}
+.bottom-nav-item i{transition:transform .2s}
+.product-card:active,.taqwa-category-card:active{transform:scale(.985)!important}
+
+@media(max-width:800px){
+  .tq-machine{width:96px;left:10px;top:auto;bottom:12px;transform:none}
+  .tq-machine small{display:none}
+  .taqwa-hero-copy{top:44%!important}
+  html[data-theme="light"] .hero-slide-overlay{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(252,249,243,.88) 60%,rgba(250,244,233,.7))!important}
+  html[data-theme="light"] .taqwa-category-card img{height:170px!important}
+  .tq-splash-gauge{width:112px;height:112px}
+}
+@media(prefers-reduced-motion:reduce){
+  .tq-machine .tq-gear,.tq-machine .tq-needle-jit,.tq-chain,.tq-road,.tq-revbar i,.taqwa-eyebrow i,.tq-splash-gauge .tq-logo-gear{animation:none!important}
+  .tq-revbar i{opacity:.8}
+}
+
+
+/* Home infinite-scroll: subtle loading status without repainting existing products */
+.home-load-more-wrap,
+#homeLoadMoreWrap {
+    min-height: 28px;
+    margin: 14px 0 22px !important;
+    color: var(--primary, #a8802a);
+    font-size: 12px;
+    font-weight: 500;
+}
+#homeLoadMoreBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 28px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(168,128,42, .06);
+}
+.home-mini-loader {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 2px solid rgba(168,128,42, .2);
+    border-top-color: var(--primary, #a8802a);
+    border-radius: 50%;
+    animation: taqwaMiniSpin .7s linear infinite;
+    flex: 0 0 13px;
+}
+.home-load-hint { opacity: .7; font-size: 11px; }
+@keyframes taqwaMiniSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+    .home-mini-loader { animation: none; border-top-color: var(--primary, #a8802a); }
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta name="theme-color" content="#9f7928">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script>window.__kdBip=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__kdBip=e;try{dispatchEvent(new Event('kd-bip'))}catch(_){}});</script>
+    <link rel="apple-touch-icon" href="assets/img/kurdi-apple-touch-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="متجر الكردي للزينة">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>متجر الكردي للزينة | تصنيف المنتجات</title>
+    <link rel="icon" type="image/png" href="assets/img/kurdi-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .category-page { padding-top: 20px}
+        .category-hero { background: var(--gradient-hero); padding: 40px 0; margin-bottom: 30px; border-radius: 0 0 var(--radius-lg) var(--radius-lg)}
+        .category-hero h1 { font-size: 2.2rem; font-weight: 900; color: var(--text-dark); display: flex; align-items: center; gap: 12px}
+        .category-hero h1 i { color: var(--primary); font-size: 2rem}
+        .category-hero p { color: var(--text-medium); margin-top: 8px; font-size: 1.1rem}
+        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 0.9rem; color: var(--text-light)}
+        .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600}
+        .breadcrumb i { font-size: 0.7rem}
+        .filter-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px}
+        .filter-bar h2 { font-size: 1.3rem; font-weight: 800; color: var(--text-dark)}
+        .sort-select { padding: 10px 16px; border: 2px solid var(--border); border-radius: var(--radius-xl); font-family: 'Tajawal', sans-serif; font-size: 0.9rem; color: var(--text-dark); background: var(--bg-white); cursor: pointer; outline: none}
+        .no-products { text-align: center; padding: 60px 20px}
+        .no-products i { font-size: 4rem; color: var(--border); margin-bottom: 16px}
+        .no-products h3 { font-size: 1.3rem; color: var(--text-dark); margin-bottom: 8px}
+        .sub-categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px}
+        .sub-category-card { background: var(--bg-white); border-radius: var(--radius-lg); padding: 24px 16px; text-align: center; cursor: pointer; transition: var(--transition); border: 2px solid transparent; box-shadow: var(--shadow-sm)}
+        .sub-category-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: var(--shadow-md)}
+        .sub-category-card.active { border-color: var(--primary); background: var(--primary-lightest)}
+        .sub-cat-icon { width: 50px; height: 50px; background: var(--gradient-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 1.3rem; color: var(--primary)}
+        .sub-cat-icon img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover}
+        .sub-category-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark)}
+        .sub-category-card span { font-size: 0.8rem; color: var(--text-light)}
+        .product-share-btn { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9); border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; color: #9f7928; font-size: 0.9rem; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.08); z-index: 5; display: flex; align-items: center; justify-content: center}
+        .tracking-code-highlight { background: #fcfaf5; border: 2px dashed #9f7928; border-radius: 16px; padding: 12px 16px; margin: 12px 0; text-align: center; direction: rtl}
+        .tracking-code-highlight .label { font-size: 0.8rem; color: #aea89c}
+        .tracking-code-highlight .code { font-size: 1.4rem; font-weight: 800; color: #9f7928; letter-spacing: 3px; direction: ltr; display: inline-block; font-family: monospace}
+        .tracking-code-highlight .copy-btn { background: none; border: none; color: #9f7928; cursor: pointer; font-size: 1rem; margin-right: 8px; transition: 0.2s}
+        .success-track-btn { display: inline-block; margin-top: 12px; padding: 10px 24px; background: linear-gradient(135deg, #9f7928, #cd9e37); color: white; border-radius: 40px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer}
+        .invoice-preview-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s}
+        .invoice-preview-modal.active { opacity: 1; visibility: visible}
+        .invoice-preview-content { background: white; border-radius: 28px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; direction: rtl; padding: 20px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2)}
+        .invoice-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f2e5c9; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap}
+        .invoice-header h2 { color: #9f7928; font-size: 1.5rem}
+        .close-invoice { background: #ffffff; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; color: #9f7928; font-size: 1.2rem}
+        .invoice-info { background: #fcfaf5; padding: 15px; border-radius: 20px; margin-bottom: 20px}
+        .invoice-info p { margin: 5px 0; font-size: 0.9rem}
+        .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 20px}
+        .invoice-table th, .invoice-table td { border: 1px solid #f2e5c9; padding: 10px; text-align: center; font-size: 0.85rem}
+        .invoice-table th { background: #ffffff; color: #9f7928}
+        .invoice-table td img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px}
+        .invoice-totals { background: #ffffff; padding: 15px; border-radius: 20px; text-align: left}
+        .invoice-totals p { margin: 5px 0; font-weight: bold}
+        .header-actions .track-btn { background: none; border: 2px solid #9f7928; color: #9f7928; padding: 6px 14px; border-radius: 40px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px; font-family: 'Tajawal', sans-serif; text-decoration: none}
+        .header-actions .track-btn:hover { background: #9f7928; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(159,121,40,0.2)}
+        /* إخفاء العناصر المحذوفة */
+        .gift-wrap-group, #orderGiftWrap, .gift-wrap-option { display: none !important; }
+    </style>
+    <link rel="stylesheet" href="assets/css/taqwa-unified-theme.css?v=6">
+    <link rel="stylesheet" href="assets/css/taqwa-v7.css?v=7">
+    <link rel="stylesheet" href="assets/css/kurdi-theme.css?v=1">
+    <script src="assets/js/taqwa-theme.js" defer></script>
+    <script src="assets/js/kurdi-motion.js?v=1" defer></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G78ZH0C64Q');
+    </script>
+<style>
+.nexora-footer-contact {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:9px 18px;
+  padding:0 12px 16px;
+  margin:0 auto;
+  direction:rtl;
+  text-align:center;
+  background:var(--bg-white,#fff);
+  font-size:.82rem;
+}
+.nexora-footer-contact a {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#9f7928;
+  text-decoration:none;
+  font-weight:600;
+  white-space:nowrap;
+}
+.nexora-footer-contact a:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-contact svg { width:16px;height:16px;flex:0 0 16px; }
+@media(max-width:480px) {
+  .nexora-footer-contact { gap:8px 13px; font-size:.76rem; }
+}
+</style>
+<style>
+.nexora-footer-credit {
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  gap:8px 14px; padding:14px 12px; margin:0 auto; text-align:center;
+  direction:ltr; color:var(--text-medium,#55482b); font-size:.82rem;
+  border-top:1px solid var(--border,#f2e5c9); background:var(--bg-white,#fff);
+}
+.nexora-footer-credit .nexora-credit-link { color:#9f7928; text-decoration:none; font-weight:800; }
+.nexora-footer-credit .nexora-credit-link:hover { color:#cd9e37; text-decoration:underline; }
+.nexora-footer-credit .nexora-copy { color:var(--text-medium,#55482b); }
+</style>
+</head>
+<body class="no-splash">
+    <header class="main-header">
+        <div class="header-content container">
+            <a href="index.html" class="logo">
+                <img src="assets/img/kurdi-logo.png" alt="متجر الكردي للزينة" class="logo-img" height="58">
+            </a>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن قطعة أو اسم دراجة...">
+                <button type="button" class="clear-search-btn" id="clearSearchBtn" title="مسح البحث"><i class="fas fa-times"></i></button>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <a href="track-order.html" class="track-btn" id="trackBtnHeader"><i class="fas fa-truck"></i> تتبع</a>
+                <button class="action-btn" id="cartBtn"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></button>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list" id="navList">
+                    <li class="nav-item" data-category="all"><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="category-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">الرئيسية</a><i class="fas fa-chevron-left"></i><span id="breadcrumbCategory">القسم</span></div>
+            <h1 id="categoryTitle"></h1>
+            <p id="categoryDesc"></p>
+        </div>
+    </section>
+
+    <section class="sub-categories-section container">
+        <div class="sub-categories-grid" id="subCategoriesGrid" style="display:none"></div>
+    </section>
+
+    <section class="products-section container category-page">
+        <div class="filter-bar">
+            <h2 id="productsSectionTitle"><i class="fas fa-sparkles"></i> منتجات القسم</h2>
+            <select class="sort-select" id="sortSelect">
+                <option value="random">ترتيب عشوائي</option>
+                <option value="price-low">السعر: من الأقل للأعلى</option>
+                <option value="price-high">السعر: من الأعلى للأقل</option>
+                <option value="newest">الأحدث</option>
+            </select>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="no-products" id="noProducts" style="display:none"><i class="fas fa-box-open"></i><h3>لا توجد منتجات</h3><p>جربي فئة أخرى أو عدي لاحقاً</p></div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo"><img src="assets/img/kurdi-badge.png" alt="متجر الكردي للزينة" class="footer-logo-img" width="56" height="54"><h3>متجر الكردي للزينة</h3></div>
+                <p>وجهتك لقطع وإكسسوارات الدراجات النارية. جودة موثوقة، خيارات متنوعة، وتجربة شراء سهلة.</p>
+                <div class="social-links" aria-label="حسابات متجر الكردي للزينة">
+                    <a href="https://wa.me/963956351837" target="_blank" rel="noopener" title="واتساب متجر الكردي للزينة"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/altaqwaa_7?cplk=Y3p5NDc5ODlqMncw" target="_blank" rel="noopener" title="إنستغرام متجر الكردي للزينة"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@altaqwaa_7?_r=1&_t=ZG-9An8oWxO6u8" target="_blank" rel="noopener" title="تيك توك متجر الكردي للزينة"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/share/1JH1j35Rk4/?mibextid=wwXIfr" target="_blank" rel="noopener" title="فيسبوك متجر الكردي للزينة"><i class="fab fa-facebook"></i></a>
+                    <a href="https://maps.app.goo.gl/ndWQk8WaMDwFCVZ27?g_st=iwb" target="_blank" rel="noopener" title="عنوان المتجر"><i class="fas fa-map-marker-alt"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html?filter=products">منتجاتنا</a></li>
+                    <li><a href="index.html?filter=offers">العروض</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>تواصل معنا</h4>
+                <ul class="contact-info">
+                    <li><a href="https://wa.me/963956351837" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +963 956 351 837 — واتساب الطلبات</a></li>
+                    <li><a href="tel:+963956351837"><i class="fas fa-phone"></i> +963 956 351 837</a></li>
+                    <li><a href="https://maps.app.goo.gl/ndWQk8WaMDwFCVZ27?g_st=iwb" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> الدانا، طريق دير حسان بعد مفرق 22</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-designer-credit nexora-footer-credit" aria-label="حقوق التصميم والنشر">
+        <span>Designed &amp; Developed by <a class="nexora-credit-link" href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer">NEXORA</a></span>
+        <span class="nexora-copy">© 2026 NEXORA. All Rights Reserved.</span>
+    </div>
+    <div class="nexora-footer-contact" aria-label="تواصل مع NEXORA">
+  <a href="https://wa.me/963938180405" target="_blank" rel="noopener noreferrer" aria-label="واتساب NEXORA">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A11.8 11.8 0 0 0 1.5 18.1L0 24l6-1.6A12 12 0 0 0 24 12a11.9 11.9 0 0 0-4-8.1ZM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.5.9.9-3.4-.2-.4A9 9 0 1 1 12 21Zm5-6.7c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2-.8.9-1 1.1-.4.2-.7.1a7.4 7.4 0 0 1-2.2-1.4 8.2 8.2 0 0 1-1.5-1.9c-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6-.7-1.7-1-2.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4a11.8 11.8 0 0 0 4.6 4c.6.3 1.1.5 1.5.6.6.2 1.2.2 1.7.1.5-.1 1.7-.7 1.9-1.4s.2-1.3.2-1.4-.2-.2-.5-.4Z"/></svg>
+    واتساب
+  </a>
+  <a href="https://www.instagram.com/nexora.d09?psln=MnA1eXZib2V6c3J6" target="_blank" rel="noopener noreferrer" aria-label="إنستغرام NEXORA">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+    إنستغرام
+  </a>
+  <a href="https://nexor-a.me/" target="_blank" rel="noopener noreferrer" aria-label="موقع NEXORA">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0-18"/></svg>
+    موقع NEXORA
+  </a>
+</div>
+
+
+    <div class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+        <a href="track-order.html" class="bottom-nav-item" id="bottomTrackBtn"><i class="fas fa-truck"></i><span>تتبع</span></a>
+        <a href="#" class="bottom-nav-item" id="bottomCartBtn"><i class="fas fa-shopping-bag"></i><span>السلة</span></a>
+        <a href="#" class="bottom-nav-item" id="bottomContactBtn"><i class="fas fa-headset"></i><span>تواصل معنا</span></a>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header"><h3><i class="fas fa-shopping-bag"></i> سلة المشتريات</h3><button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button></div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-empty" id="cartEmpty"><i class="fas fa-shopping-basket"></i><p>سلة المشتريات فارغة</p><span>أضف منتجات إلى السلة للبدء.</span></div>
+        <div class="cart-footer" id="cartFooter"><div class="cart-total"><span>المجموع:</span><span class="total-price" id="totalPrice">0 $</span></div><button class="checkout-btn" id="checkoutBtn"><i class="fas fa-check-circle"></i> تأكيد الطلب</button></div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="order-modal" id="orderModal">
+        <div class="modal-header"><h3><i class="fas fa-clipboard-list"></i> تفاصيل الطلب</h3><button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body">
+            <form id="orderForm">
+                <div class="form-group"><label><i class="fas fa-user"></i> الاسم الكامل</label><input type="text" id="fullName" placeholder="أدخل الاسم الكامل" required></div>
+                <div class="form-group"><label><i class="fas fa-phone"></i> رقم الهاتف</label><input type="tel" id="phone" placeholder="أدخل رقم الهاتف" required></div>
+                <div class="form-group"><label><i class="fas fa-map-marker-alt"></i> المدينة</label>
+                    <select id="city" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="دمشق">دمشق</option><option value="حلب">حلب</option><option value="حمص">حمص</option><option value="اللاذقية">اللاذقية</option>
+                        <option value="حماة">حماة</option><option value="طرطوس">طرطوس</option><option value="دير الزور">دير الزور</option><option value="الحسكة">الحسكة</option>
+                        <option value="الرقة">الرقة</option><option value="إدلب">إدلب</option><option value="درعا">درعا</option><option value="السويداء">السويداء</option>
+                        <option value="القنيطرة">القنيطرة</option><option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group"><label><i class="fas fa-home"></i> العنوان التفصيلي</label><textarea id="address" rows="3" placeholder="أدخل العنوان بالتفصيل..." required></textarea></div>
+                <div class="form-group"><label><i class="fas fa-sticky-note"></i> ملاحظات (اختياري)</label><textarea id="notes" rows="2" placeholder="أي ملاحظات خاصة بالطلب..."></textarea></div>
+                <div class="order-summary">
+                    <h4><i class="fas fa-receipt"></i> ملخص الطلب</h4>
+                    <div class="summary-row"><span>عدد المنتجات:</span><span id="orderItemCount">0</span></div>
+                    <div class="summary-row"><span>المجموع الفرعي:</span><span id="orderSubtotal">0 $</span></div>
+                    <div class="summary-row"><span>التوصيل:</span><span id="shippingCost">مدفوع (يتم حسابه عند التوصيل)</span></div>
+                    <div class="summary-row total"><span>الإجمالي:</span><span id="orderTotal">0 $</span></div>
+                </div>
+                <div class="payment-note"><i class="fas fa-info-circle"></i><p><strong>ملاحظة:</strong> بعد تأكيد الطلب، ستنتقلين لخطوة الدفع عبر شام كاش لإرفاق وصل التحويل.</p></div>
+                <button type="submit" class="submit-order-btn"><i class="fas fa-arrow-left"></i> متابعة للدفع</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>تم إرسال طلبك بنجاح! 🎉</h3>
+            <p>سنقوم بالتواصل معك قريباً لتأكيد الطلب.</p>
+            <div class="tracking-code-highlight">
+                <div class="label">🔑 رمز تتبع طلبك</div>
+                <div><span class="code" id="orderTrackingCode">TAQ-XXXXXX</span><button class="copy-btn" onclick="copyTrackingCode()" title="نسخ الرمز"><i class="fas fa-copy"></i></button></div>
+                <div style="font-size:0.7rem;color:#aea89c;margin-top:4px">احتفظي بهذا الرمز لتتبع طلبك</div>
+            </div>
+            <div class="success-details">
+                <p><i class="fas fa-clock"></i> وقت الطلب: <span id="orderTime"></span></p>
+                <p><i class="fas fa-phone"></i> سنتواصل معك على: <span id="orderPhone"></span></p>
+            </div>
+            <button class="success-btn" id="successBtn"><i class="fas fa-shopping-bag"></i> مواصلة التسوق</button>
+            <a href="track-order.html" class="success-track-btn" id="successTrackBtn"><i class="fas fa-truck"></i> تتبع طلبك</a>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage">تمت الإضافة إلى السلة!</span></div>
+    <div class="quick-view-modal" id="quickViewModal"><div class="quick-view-content"><button class="close-quick-view" id="closeQuickView"><i class="fas fa-times"></i></button><div class="quick-view-body" id="quickViewBody"></div></div></div>
+
+    <div class="modal-overlay" id="contactModalOverlay"></div>
+    <div class="order-modal" id="contactModal">
+        <div class="modal-header"><h3><i class="fas fa-headset"></i> تواصل معنا</h3><button class="close-modal" id="closeContactModal"><i class="fas fa-times"></i></button></div>
+        <div class="modal-body" style="text-align: center">
+            <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px">
+                <a href="https://wa.me/963956351837" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: #25D366; color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fab fa-whatsapp" style="font-size: 1.5rem"></i> واتساب</a>
+                <a href="#" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(45deg, #f09433, #d62976, #962fbf); color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fab fa-instagram" style="font-size: 1.5rem"></i> إنستغرام</a>
+                <a href="#" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: #15100a; color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fab fa-tiktok" style="font-size: 1.5rem"></i> تيك توك</a>
+                <a href="#" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: #c49631; color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fab fa-facebook" style="font-size: 1.5rem"></i> فيسبوك</a>
+                <a href="#" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: #9f7928; color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: 700"><i class="fas fa-map-marker-alt" style="font-size: 1.5rem"></i> موقعنا على الخريطة</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="invoice-preview-modal" id="invoicePreviewModal">
+        <div class="invoice-preview-content" id="invoicePreviewContent"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="assets/js/taqwa-config.js"></script>
+    <script src="assets/js/category1.js"></script>
+    <script src="assets/js/search-overlay-fix.js"></script>
+
+    <script>
+        function copyTrackingCode() {
+            const codeElement = document.getElementById('orderTrackingCode');
+            if (codeElement) {
+                const code = codeElement.textContent;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(code).then(() => showToast('✅ تم نسخ رمز التتبع!')).catch(() => fallbackCopy(code));
+                } else fallbackCopy(code);
+            }
+        }
+        function fallbackCopy(code) {
+            const ta = document.createElement('textarea');
+            ta.value = code; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); showToast('✅ تم نسخ رمز التتبع!'); }
+            catch { showToast('تعذر النسخ', true); }
+            document.body.removeChild(ta);
+        }
+
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('product');
+            if (productId) {
+                const check = setInterval(() => {
+                    if (typeof products !== 'undefined' && products.length > 0) {
+                        clearInterval(check);
+                        const product = products.find(p => p.id === productId);
+                        if (product) setTimeout(() => openProductOptions(productId, null), 600);
+                        else showToast('⚠️ المنتج غير موجود', true);
+                    }
+                }, 200);
+                setTimeout(() => clearInterval(check), 5000);
+            }
+        })();
+    </script>
+<script src="assets/js/pwa-install.js" defer></script>
+</body>
+</html>

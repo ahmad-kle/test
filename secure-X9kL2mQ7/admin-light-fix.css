@@ -1,0 +1,35 @@
+/* لوحة الإدارة — تطابق كامل مع هوية الصفحة الرئيسية في الوضع النهاري */
+html[data-theme="light"] { --admin-bg:#fdfbf7; --admin-panel:#fff; --admin-text:#3c321c; --admin-muted:#6e634d; --admin-border:#f5ebd6; --admin-primary:#ae852c; --admin-red:#ae852c; }
+html[data-theme="light"] html, html[data-theme="light"] body { background:#fdfbf7 !important; color:#3c321c !important; }
+html[data-theme="light"] .sidebar, html[data-theme="light"] #sidebar { background:#fff !important; color:#3c321c !important; border-left:1px solid #f5ebd6 !important; box-shadow:0 8px 28px rgba(124,95,31,.07) !important; }
+html[data-theme="light"] .sidebar-brand { background:#fff !important; color:#856621 !important; border-bottom:1px solid #f8f1e2 !important; }
+html[data-theme="light"] .sidebar-brand img { background:#fff !important; }
+html[data-theme="light"] .sidebar-menu a, html[data-theme="light"] .sidebar-menu button { color:#5a4c2d !important; }
+html[data-theme="light"] .sidebar-menu a:hover, html[data-theme="light"] .sidebar-menu button:hover, html[data-theme="light"] .sidebar-menu a.active, html[data-theme="light"] .sidebar-menu button.active { background:#fbf7ee !important; color:#856621 !important; border-color:#f5ebd6 !important; }
+html[data-theme="light"] .main-content, html[data-theme="light"] .admin-content { background:#fdfbf7 !important; color:#3c321c !important; }
+html[data-theme="light"] .topbar, html[data-theme="light"] .admin-header { background:#fff !important; color:#3c321c !important; border-bottom:1px solid #f5ebd6 !important; box-shadow:0 4px 16px rgba(124,95,31,.04) !important; }
+html[data-theme="light"] .stat-card, html[data-theme="light"] .card, html[data-theme="light"] .panel, html[data-theme="light"] .chart-card, html[data-theme="light"] .table-container, html[data-theme="light"] .modal-content, html[data-theme="light"] .form-container, html[data-theme="light"] .dashboard-card, html[data-theme="light"] .content-card { background:#fff !important; color:#3c321c !important; border:1px solid #f5ebd6 !important; border-radius:16px !important; box-shadow:0 8px 24px rgba(124,95,31,.06) !important; }
+html[data-theme="light"] h1, html[data-theme="light"] h2, html[data-theme="light"] h3, html[data-theme="light"] h4, html[data-theme="light"] label { color:#3c321c !important; }
+html[data-theme="light"] p, html[data-theme="light"] small, html[data-theme="light"] .muted { color:#6e634d; }
+html[data-theme="light"] .btn, html[data-theme="light"] button, html[data-theme="light"] .btn-primary, html[data-theme="light"] .btn-danger, html[data-theme="light"] .btn-success, html[data-theme="light"] .btn-warning, html[data-theme="light"] .action-btn, html[data-theme="light"] .delete-btn, html[data-theme="light"] .save-btn { background:linear-gradient(135deg,#ae852c,#72571d) !important; color:#fff !important; border:1px solid #ae852c !important; }
+html[data-theme="light"] input, html[data-theme="light"] select, html[data-theme="light"] textarea { background:#fff !important; color:#3c321c !important; border:1px solid #efe3c9 !important; }
+html[data-theme="light"] table { background:#fff !important; color:#3c321c !important; }
+html[data-theme="light"] th { background:#fbf7ee !important; color:#3c321c !important; }
+html[data-theme="light"] td { border-color:#f6efe0 !important; color:#5a4c2d !important; }
+html[data-theme="light"] .badge, html[data-theme="light"] .status, html[data-theme="light"] .status-badge { border-color:#efe3c9 !important; }
+html[data-theme="light"] .btn-danger, html[data-theme="light"] .text-danger, html[data-theme="light"] .error-message { color:#856621 !important; }
+html[data-theme="light"] .btn-danger { background:#fbf7ee !important; }
+/* إصلاح العناصر التي كانت تستخدم ألواناً مباشرة داخل HTML */
+html[data-theme="light"] .sidebar-item[style*="#e33a3d"],
+html[data-theme="light"] .sidebar-item[style*="red"] { color:#856621 !important; }
+html[data-theme="light"] #sidebar .sidebar-item { color:#5a4c2d !important; }
+html[data-theme="light"] .main-content div[style*="#201d17"],
+html[data-theme="light"] .main-content div[style*="#191611"],
+html[data-theme="light"] .admin-content div[style*="#201d17"],
+html[data-theme="light"] .admin-content div[style*="#191611"] {
+  background:#fcf8f1 !important; color:#3c321c !important; border-color:#f5ebd6 !important;
+}
+html[data-theme="light"] .main-content [style*="#e33a3d"],
+html[data-theme="light"] .main-content [style*="#e53b3e"],
+html[data-theme="light"] .admin-content [style*="#e33a3d"],
+html[data-theme="light"] .admin-content [style*="#e53b3e"] { color:#856621 !important; border-color:#ae852c !important; }
