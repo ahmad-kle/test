@@ -20,22 +20,41 @@
     var w = document.querySelector('.kurdi-wheel');
     if (!w || reduce) return;
     var r = w.querySelector('.kw-spin'), hero = document.querySelector('.hero-section') || w;
-    var IDLE = 0.35, ang = 0, spd = IDLE, tgt = IDLE, ly = scrollY, lt = performance.now(), vis = true;
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { vis = e[0].isIntersecting; }).observe(hero);
+    var IDLE = 0.35, ang = 0, spd = IDLE, tgt = IDLE, ly = scrollY, lt = performance.now();
+    var visible = true, raf = 0, lastFrame = 0;
+    var observer = null;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(function (entries) {
+        visible = !!entries[0].isIntersecting;
+        if (visible && Math.abs(spd - IDLE) > 0.08) start();
+        else if (!visible && raf) { cancelAnimationFrame(raf); raf = 0; }
+      }, { threshold: 0.01 });
+      observer.observe(hero);
+    }
+    function frame(now) {
+      raf = 0;
+      if (!visible || document.hidden) return;
+      var dt = lastFrame ? Math.min((now - lastFrame) / 16.67, 2) : 1;
+      lastFrame = now;
+      tgt += (IDLE - tgt) * Math.min(0.03 * dt, 1);
+      spd += (tgt - spd) * Math.min(0.12 * dt, 1);
+      if (r) r.style.transform = 'rotate(' + (ang = (ang + spd * dt) % 360) + 'deg)';
+      w.style.setProperty('--rev', Math.min(spd / 30, 1).toFixed(2));
+      if (Math.abs(spd - IDLE) > 0.08 || Math.abs(tgt - IDLE) > 0.08) raf = requestAnimationFrame(frame);
+      else { lastFrame = 0; }
+    }
+    function start() { if (visible && !document.hidden && !raf) raf = requestAnimationFrame(frame); }
     addEventListener('scroll', function () {
       var t = performance.now(), dy = Math.abs(scrollY - ly);
-      tgt = Math.max(tgt, IDLE + Math.min(dy / Math.max(t - lt, 1) * 9, 30)); ly = scrollY; lt = t;
+      tgt = Math.max(tgt, IDLE + Math.min(dy / Math.max(t - lt, 1) * 9, 30));
+      ly = scrollY; lt = t; start();
     }, { passive: true });
-    w.addEventListener('click', function () { tgt = 34; if (navigator.vibrate) navigator.vibrate([20, 30, 20]); });
-    (function loop() {
-      tgt += (IDLE - tgt) * 0.03; spd += (tgt - spd) * 0.12;
-      if (vis) {
-        ang = (ang + spd) % 360; r.style.transform = 'rotate(' + ang + 'deg)';
-        w.style.setProperty('--rev', Math.min(spd / 30, 1).toFixed(2));
-      }
-      requestAnimationFrame(loop);
-    })();
-    setTimeout(function () { tgt = 28; }, 3000);   // "تشغيل المحرك" بعد اختفاء الشاشة الافتتاحية
+    w.addEventListener('click', function () {
+      tgt = 34; start();
+      if (navigator.vibrate) navigator.vibrate([20, 30, 20]);
+    });
+    document.addEventListener('visibilitychange', function () { if (document.hidden && raf) { cancelAnimationFrame(raf); raf = 0; } else start(); });
+    setTimeout(function () { tgt = 28; start(); }, 3000);
   }
 
   /* 3) نبضة عدّاد السلة + دائرة ذهبية تطير من زر الإضافة إلى السلة */

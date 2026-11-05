@@ -254,8 +254,8 @@ function getEffectivePrice(item) {
 // DESIGNER CREDIT
 // ============================================
 function getDesignerCredit(style = 'minimal') {
-    if (style === 'light') return `<div style="margin-top:12px;padding-top:10px;border-top:1px solid #f2e5c9;text-align:center;font-size:0.7rem;color:#aea89c"><i class="fas fa-code" style="color:#9f7928;font-size:0.65rem"></i> تصميم <strong style="color:#9f7928">المهندس أحمد كلاوي</strong> © 2026</div>`;
-    if (style === 'minimal') return `<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #f2e5c9;text-align:center;font-size:0.65rem;color:#aea89c"><i class="fas fa-code" style="color:#9f7928"></i> <strong style="color:#9f7928">المهندس أحمد كلاوي</strong></div>`;
+    if (style === 'light') return `<div style="margin-top:12px;padding-top:10px;border-top:1px solid #f2e5c9;text-align:center;font-size:0.7rem;color:#aea89c"><i class="fas fa-code" style="color:#9f7928;font-size:0.65rem"></i> Designed &amp; Developed by <strong style="color:#9f7928">NEXORA</strong> © 2026</div>`;
+    if (style === 'minimal') return `<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #f2e5c9;text-align:center;font-size:0.65rem;color:#aea89c"><i class="fas fa-code" style="color:#9f7928"></i> <strong style="color:#9f7928">NEXORA</strong></div>`;
     return '';
 }
 
@@ -571,7 +571,9 @@ async function loadData() {
 
 function setupRealtimeListeners() {
     if (realtimeListeners.products) db.ref('products').off('value', realtimeListeners.products);
+    let firstProductsSnapshot = true;
     realtimeListeners.products = db.ref('products').on('value', (snap) => {
+        if (firstProductsSnapshot) { firstProductsSnapshot = false; return; }
         if (!snap.exists()) return;
         products = Object.keys(snap.val()).map(k => ({ id: k, ...snap.val()[k] })).filter(p => p.active !== false);
         renderProducts();
@@ -580,7 +582,9 @@ function setupRealtimeListeners() {
         filterOutOfStockItems();
     });
     if (realtimeListeners.categories) db.ref('categories').off('value', realtimeListeners.categories);
+    let firstCategoriesSnapshot = true;
     realtimeListeners.categories = db.ref('categories').on('value', (snap) => {
+        if (firstCategoriesSnapshot) { firstCategoriesSnapshot = false; return; }
         if (!snap.exists()) return;
         categories = Object.keys(snap.val()).map(k => ({ id: k, ...snap.val()[k] })).filter(c => c.active !== false).sort((a,b)=>(a.order||0)-(b.order||0));
         renderNavbar();
@@ -588,7 +592,9 @@ function setupRealtimeListeners() {
         renderFilterTabs();
     });
     if (realtimeListeners.coupons) db.ref('coupons').off('value', realtimeListeners.coupons);
+    let firstCouponsSnapshot = true;
     realtimeListeners.coupons = db.ref('coupons').on('value', (snap) => {
+        if (firstCouponsSnapshot) { firstCouponsSnapshot = false; return; }
         if (!snap.exists()) return;
         coupons = Object.keys(snap.val()).map(k => ({ id: k, ...snap.val()[k] })).filter(c => c.active !== false);
         if (appliedCoupon) {
@@ -887,7 +893,7 @@ function renderProducts(appendOnly = false) {
             </div>` : '';
 
         return `
-        <div class="product-card" data-product-id="${product.id}" style="animation:fadeInUp 0.5s ease ${index * 0.03}s forwards;opacity:0">
+        <div class="product-card" data-product-id="${product.id}" >
             <div class="product-image">
                 <img id="productMainImage_${product.id}" src="${mainImage}" alt="${product.name}" class="product-main-image" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400'">
                 ${product.oldprice ? `<span class="product-badge badge-sale">تخفيض</span>` : ''}

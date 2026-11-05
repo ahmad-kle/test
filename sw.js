@@ -1,12 +1,12 @@
 /* متجر الكردي للزينة — Service Worker
    - يتجاهل لوحة الإدارة وكل الطلبات الخارجية (Firebase/Cloudinary/CDN) فلا يتدخل في منطق المتجر.
    - الصفحات والملفات: الشبكة أولاً مع بديل من الذاكرة، وصفحة offline.html عند انقطاع الاتصال. */
-const VERSION = 'alkurdi-v1.1.1';
+const VERSION = 'alkurdi-v1.2.0';
 const SHELL = VERSION + '-shell';
 const IMAGES = VERSION + '-img';
 const PRECACHE = [
   './offline.html', './manifest.webmanifest',
-  './assets/img/kurdi-logo.png', './assets/img/kurdi-badge.png', './assets/img/kurdi-icon.png',
+  './assets/img/kurdi-logo.webp', './assets/img/kurdi-badge.webp', './assets/img/kurdi-icon.png',
   './assets/img/kurdi-icon-192.png', './assets/img/kurdi-icon-512.png'
 ];
 
